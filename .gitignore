@@ -1,0 +1,5 @@
+# Ignore the data_files directory
+*data_files/
+__pycache__/
+.ipynb_checkpoints/
+auth*
