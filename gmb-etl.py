@@ -41,10 +41,11 @@ for clinicaldata in data.odm:
     # add the parent_id
     parent_key = 'parent_id'
     if node_name not in data_dict.keys():
-            data_dict[node_name] = {}
-    if parent_key not in data_dict[node_name].keys():
-        data_dict[node_name][parent_key] = []
-    data_dict[node_name][parent_key].append(parent_id)
+        data_dict[node_name] = {}
+    if node_name != 'SUBJECT':
+        if parent_key not in data_dict[node_name].keys():
+            data_dict[node_name][parent_key] = []
+        data_dict[node_name][parent_key].append(parent_id)
     for itemdata in clinicaldata.subjectdata.studyeventdata.formdata.itemgroupdata:
         itemoid = itemdata['itemoid'].split('.')
         if itemoid[1] not in data_dict[node_name].keys():
