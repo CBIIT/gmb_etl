@@ -37,15 +37,22 @@ print('TRANSFORM DATASET')
 data_dict = {}
 for clinicaldata in data.odm:
     node_name = clinicaldata.subjectdata.studyeventdata.formdata['formoid']
-    for itemdata in clinicaldata.subjectdata.studyeventdata.formdata.itemgroupdata:
-        if node_name not in data_dict.keys():
+    parent_id = clinicaldata.subjectdata['subjectkey']
+    # add the parent_id
+    parent_key = 'parent_id'
+    if node_name not in data_dict.keys():
             data_dict[node_name] = {}
-        if itemdata['itemoid'] not in data_dict[node_name].keys():
-            data_dict[node_name][itemdata['itemoid']] = []
+    if parent_key not in data_dict[node_name].keys():
+        data_dict[node_name][parent_key] = []
+    data_dict[node_name][parent_key].append(parent_id)
+    for itemdata in clinicaldata.subjectdata.studyeventdata.formdata.itemgroupdata:
+        itemoid = itemdata['itemoid'].split('.')
+        if itemoid[1] not in data_dict[node_name].keys():
+            data_dict[node_name][itemoid[1]] = []
         try:
-            data_dict[node_name][itemdata['itemoid']].append(itemdata['value'])
+            data_dict[node_name][itemoid[1]].append(itemdata['value'])
         except:
-            data_dict[node_name][itemdata['itemoid']].append(None)
+            data_dict[node_name][itemoid[1]].append(None)
 
 
 # In[4]:
@@ -72,14 +79,13 @@ with open(auth['NODE_FILE']) as f:
     model = yaml.load(f, Loader = yaml.FullLoader)
 for node in model['Nodes']:
     if node not in data_dict.keys():
-        print(f'Data node {node} is not in the dataset')
+        print(f'Data node {node} is not in the dataset.')
 
 for node in model['Nodes']:
     if node in data_dict.keys():
         for prop in model['Nodes'][node]['Props']:
-            prop_name = node + '.' +  prop
-            if prop_name not in data_dict[node].keys():
-                print(f'Property {prop_name} is not in the dataset')
+            if prop not in data_dict[node].keys():
+                print(f'Property {prop} from data node {node} is not in the dataset.')
 
 
 # In[ ]:

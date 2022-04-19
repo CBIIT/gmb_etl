@@ -3,3 +3,4 @@
 __pycache__/
 .ipynb_checkpoints/
 auth*
+gmb-etl.ipynb
