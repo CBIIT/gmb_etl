@@ -18,20 +18,21 @@ import argparse
 ######GET DATASET FROM RAVE######
 print('GET DATASET FROM RAVE')
 parser = argparse.ArgumentParser()
-parser.add_argument('auth_file')
+parser.add_argument('config_file')
 args = parser.parse_args()
-auth = args.auth_file
+config = args.config_file
 # auth = 'auth_gmb.yaml'
-with open(auth) as f:
-    auth = yaml.load(f, Loader = yaml.FullLoader)
-r = requests.get(auth['API'], auth = HTTPBasicAuth(auth['USERNAME'], auth['PASSWORD']))
+# config = 'gmb_config.yaml'
+with open(config) as f:
+    config = yaml.load(f, Loader = yaml.FullLoader)
+r = requests.get(config['API'], auth = HTTPBasicAuth(config['USERNAME'], config['PASSWORD']))
 data_set = r.content.decode("utf-8")
-data = BeautifulSoup(data_set, features = 'lxml')
-
+data = BeautifulSoup(data_set)
 
 # In[3]:
 
 
+######TRANSFORM DATASET######
 ######TRANSFORM DATASET######
 print('TRANSFORM DATASET')
 data_dict = {}
@@ -61,33 +62,32 @@ for clinicaldata in data.odm:
             data_dict[node_name][itemoid[1]].append(None)
 
 
+
 # In[4]:
 
 
+######PRINT DATA FILES######
 ######PRINT DATA FILES######
 print('PRINT DATA FILES')
 for node_type in data_dict:
     df = pd.DataFrame()
     for node_key in data_dict[node_type]:
         df[node_key] = data_dict[node_type][node_key]
-    file_name = auth['OUTPUT_FOLDER'] + node_type + ".tsv"
-    if not os.path.exists(auth['OUTPUT_FOLDER']):
-        os.mkdir(auth['OUTPUT_FOLDER'])
+    file_name = config['OUTPUT_FOLDER'] + node_type + ".tsv"
+    if not os.path.exists(config['OUTPUT_FOLDER']):
+        os.mkdir(config['OUTPUT_FOLDER'])
     df.to_csv(file_name, sep = "\t", index = False)
-
 
 # In[5]:
 
 
 ######VALIDATE DATA FILES######
 print('VALIDATE DATA FILES')
-with open(auth['NODE_FILE']) as f:
+with open(config['NODE_FILE']) as f:
     model = yaml.load(f, Loader = yaml.FullLoader)
 for node in model['Nodes']:
     if node not in data_dict.keys():
         print(f'Data node {node} is not in the dataset.')
-
-for node in model['Nodes']:
     if node in data_dict.keys():
         for prop in model['Nodes'][node]['Props']:
             if prop not in data_dict[node].keys():
