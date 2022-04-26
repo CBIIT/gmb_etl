@@ -1,6 +1,6 @@
 USERNAME: USERNAME
 PASSWORD: PASSWORD
-API: API
+API: https://ccredc.mdsol.com/RaveWebServices/studies/000048(UAT)/datasets/regular
 OUTPUT_FOLDER: ./gmb_raw_data_files/
 OUTPUT_NODE_FOLDER: ./gmb_node_data_files/
 NODE_FILE: ./node_file/000048_Model.yml

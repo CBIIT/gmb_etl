@@ -88,7 +88,7 @@ with open(config['NODE_FILE']) as f:
 for node in model['Nodes']:
     if node not in data_dict.keys():
         print(f'Data node {node} is not in the dataset.')
-    if node in data_dict.keys():
+    else:
         for prop in model['Nodes'][node]['Props']:
             if prop not in data_dict[node].keys():
                 print(f'Property {prop} from data node {node} is not in the dataset.')
