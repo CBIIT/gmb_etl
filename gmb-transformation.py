@@ -9,6 +9,8 @@ import os
 import yaml
 import random
 import boto3
+import datetime
+import dateutil.tz
 
 
 # In[2]:
@@ -54,9 +56,11 @@ for file_name in os.listdir(config['OUTPUT_FOLDER']):
 ######UPLOAD DATA FILES######
 
 s3 = boto3.client('s3')
+eastern = dateutil.tz.gettz('US/Eastern')
+timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%d-%H-%M-%S")
 for file_name in os.listdir(config['OUTPUT_NODE_FOLDER']):
-    if file_name.endswith(".tsv"):
+    if file_name.endswith('.tsv'):
         file_directory = config['OUTPUT_NODE_FOLDER'] + file_name
-        s3_file_directory = file_directory[2:]
+        s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
         s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
 

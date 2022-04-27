@@ -12,6 +12,8 @@ import pandas as pd
 import os
 import argparse
 import boto3
+import datetime
+import dateutil.tz
 
 # In[2]:
 
@@ -28,7 +30,7 @@ with open(config) as f:
     config = yaml.load(f, Loader = yaml.FullLoader)
 r = requests.get(config['API'], auth = HTTPBasicAuth(config['USERNAME'], config['PASSWORD']))
 data_set = r.content.decode("utf-8")
-data = BeautifulSoup(data_set)
+data = BeautifulSoup(data_set, features='lxml')
 
 # In[3]:
 
@@ -101,10 +103,12 @@ for node in model['Nodes']:
 ######UPLOAD DATA FILES######
 
 s3 = boto3.client('s3')
+eastern = dateutil.tz.gettz('US/Eastern')
+timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%d-%H-%M-%S")
 for file_name in os.listdir(config['OUTPUT_FOLDER']):
     if file_name.endswith(".tsv"):
         file_directory = config['OUTPUT_FOLDER'] + file_name
-        s3_file_directory = file_directory[2:]
+        s3_file_directory = 'Raw' + '/' + timestamp + '/' + file_name
         s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
 
 
