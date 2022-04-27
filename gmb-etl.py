@@ -104,7 +104,7 @@ for node in model['Nodes']:
 
 s3 = boto3.client('s3')
 eastern = dateutil.tz.gettz('US/Eastern')
-timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%d-%H-%M-%S")
+timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%dT%H%M%S")
 for file_name in os.listdir(config['OUTPUT_FOLDER']):
     if file_name.endswith(".tsv"):
         file_directory = config['OUTPUT_FOLDER'] + file_name
