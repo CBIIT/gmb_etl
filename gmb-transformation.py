@@ -8,9 +8,10 @@ import pandas as pd
 import os
 import yaml
 import random
+import boto3
 
 
-# In[5]:
+# In[2]:
 
 
 config = 'gmb_config.yaml'
@@ -49,8 +50,13 @@ for file_name in os.listdir(config['OUTPUT_FOLDER']):
             print(f'{file_name[0]} is not in the node file')
 
 
-# In[ ]:
+# In[2]:
+######UPLOAD DATA FILES######
 
-
-
+s3 = boto3.client('s3')
+for file_name in os.listdir(config['OUTPUT_NODE_FOLDER']):
+    if file_name.endswith(".tsv"):
+        file_directory = config['OUTPUT_NODE_FOLDER'] + file_name
+        s3_file_directory = file_directory[2:]
+        s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
 

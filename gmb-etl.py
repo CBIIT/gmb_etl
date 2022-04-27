@@ -11,6 +11,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import os
 import argparse
+import boto3
 
 # In[2]:
 
@@ -94,8 +95,16 @@ for node in model['Nodes']:
                 print(f'Property {prop} from data node {node} is not in the dataset.')
 
 
-# In[ ]:
+# In[6]:
 
 
+######UPLOAD DATA FILES######
+
+s3 = boto3.client('s3')
+for file_name in os.listdir(config['OUTPUT_FOLDER']):
+    if file_name.endswith(".tsv"):
+        file_directory = config['OUTPUT_FOLDER'] + file_name
+        s3_file_directory = file_directory[2:]
+        s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
 
 
