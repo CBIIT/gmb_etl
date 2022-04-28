@@ -105,8 +105,11 @@ for node in model['Nodes']:
 s3 = boto3.client('s3')
 eastern = dateutil.tz.gettz('US/Eastern')
 timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%dT%H%M%S")
+config['TIMESTAMP'] = timestamp
+with open(args.config_file, 'w') as file:
+    documents = yaml.dump(config, file)
 for file_name in os.listdir(config['OUTPUT_FOLDER']):
-    if file_name.endswith(".tsv"):
+    if file_name.endswith('.tsv'):
         file_directory = config['OUTPUT_FOLDER'] + file_name
         s3_file_directory = 'Raw' + '/' + timestamp + '/' + file_name
         s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)

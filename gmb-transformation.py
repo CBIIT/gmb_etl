@@ -11,12 +11,16 @@ import random
 import boto3
 import datetime
 import dateutil.tz
+import argparse
 
 
 # In[2]:
 
-
-config = 'gmb_config.yaml'
+parser = argparse.ArgumentParser()
+parser.add_argument('config_file')
+args = parser.parse_args()
+config = args.config_file
+#config = 'gmb_config.yaml'
 with open(config) as f:
     config = yaml.load(f, Loader = yaml.FullLoader)
 with open(config['NODE_FILE']) as f:
@@ -57,10 +61,17 @@ for file_name in os.listdir(config['OUTPUT_FOLDER']):
 
 s3 = boto3.client('s3')
 eastern = dateutil.tz.gettz('US/Eastern')
-timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%dT%H%M%S")
-for file_name in os.listdir(config['OUTPUT_NODE_FOLDER']):
-    if file_name.endswith('.tsv'):
-        file_directory = config['OUTPUT_NODE_FOLDER'] + file_name
-        s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
-        s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
+timestamp = config['TIMESTAMP']
+if config['TIMESTAMP'] != 'unknown':
+    for file_name in os.listdir(config['OUTPUT_NODE_FOLDER']):
+        if file_name.endswith('.tsv'):
+            file_directory = config['OUTPUT_NODE_FOLDER'] + file_name
+            s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
+            s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
+else:
+    print('Please run the extraction script first, abort uploading files to s3.')
+
+config['TIMESTAMP'] = 'unknown'
+with open('gmb_config.yaml', 'w') as file:
+    documents = yaml.dump(config, file)
 
