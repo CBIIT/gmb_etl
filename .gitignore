@@ -4,3 +4,4 @@ __pycache__/
 .ipynb_checkpoints/
 gmb_config.yaml
 gmb-etl.ipynb
+20*/

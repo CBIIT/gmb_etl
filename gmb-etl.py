@@ -1,9 +1,6 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
 import requests
 from requests.auth import HTTPBasicAuth
 import yaml
@@ -14,8 +11,6 @@ import argparse
 import boto3
 import datetime
 import dateutil.tz
-
-# In[2]:
 
 
 ######GET DATASET FROM RAVE######
@@ -32,10 +27,6 @@ r = requests.get(config['API'], auth = HTTPBasicAuth(config['USERNAME'], config[
 data_set = r.content.decode("utf-8")
 data = BeautifulSoup(data_set, features='lxml')
 
-# In[3]:
-
-
-######TRANSFORM DATASET######
 ######TRANSFORM DATASET######
 print('TRANSFORM DATASET')
 data_dict = {}
@@ -64,12 +55,6 @@ for clinicaldata in data.odm:
         except:
             data_dict[node_name][itemoid[1]].append(None)
 
-
-
-# In[4]:
-
-
-######PRINT DATA FILES######
 ######PRINT DATA FILES######
 print('PRINT DATA FILES')
 for node_type in data_dict:
@@ -80,8 +65,6 @@ for node_type in data_dict:
     if not os.path.exists(config['OUTPUT_FOLDER']):
         os.mkdir(config['OUTPUT_FOLDER'])
     df.to_csv(file_name, sep = "\t", index = False)
-
-# In[5]:
 
 
 ######VALIDATE DATA FILES######
@@ -96,18 +79,12 @@ for node in model['Nodes']:
             if prop not in data_dict[node].keys():
                 print(f'Property {prop} from data node {node} is not in the dataset.')
 
-
-# In[6]:
-
-
 ######UPLOAD DATA FILES######
 
 s3 = boto3.client('s3')
 eastern = dateutil.tz.gettz('US/Eastern')
 timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%dT%H%M%S")
-config['TIMESTAMP'] = timestamp
-with open(args.config_file, 'w') as file:
-    documents = yaml.dump(config, file)
+
 for file_name in os.listdir(config['OUTPUT_FOLDER']):
     if file_name.endswith('.tsv'):
         file_directory = config['OUTPUT_FOLDER'] + file_name
