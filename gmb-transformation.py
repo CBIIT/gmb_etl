@@ -59,13 +59,14 @@ with open(config) as f:
     config = yaml.load(f, Loader = yaml.FullLoader)
 s3 = boto3.client('s3')
 download_from_s3(s3, args.s3_sub_folder)
+download_file_directory = './' + args.s3_sub_folder
 print('Files are successfully downloaded')
 
 with open(config['NODE_FILE']) as f:
     model = yaml.load(f, Loader = yaml.FullLoader)    
-for file_name in os.listdir(config['OUTPUT_FOLDER']):
+for file_name in os.listdir(download_file_directory):
     if file_name.endswith(".tsv"):
-        df = pd.read_csv(os.path.join(config['OUTPUT_FOLDER'], file_name), sep='\t')
+        df = pd.read_csv(os.path.join(download_file_directory, file_name), sep='\t')
         file_name = file_name.split('.')
         df, file_name = transform_node_name('PHYSICAL_EXAM___SCREENING', 'PHYSICAL_EXAM_SCREENING', df, file_name)
         if file_name[0] in model['Nodes'].keys():
