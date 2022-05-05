@@ -34,6 +34,8 @@ def upload_files(s3, config, timestamp):
             file_directory = config['OUTPUT_NODE_FOLDER'] + file_name
             s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
             s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
+    subfolder = 's3://' + config['S3_BUCKET'] + '/' + 'Transformed' + '/' + timestamp
+    print(f'Data files upload to {subfolder}')
 #Add id field for data file
 def add_id_field(df, file_name):
     parent_node = 'SUBJECT'
@@ -145,4 +147,3 @@ for file_name in os.listdir(download_file_directory):
 
 ######UPLOAD DATA FILES######
 upload_files(s3, config, args.s3_sub_folder)
-print('Files are successfully uploaded')

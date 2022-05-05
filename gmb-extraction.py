@@ -91,7 +91,7 @@ for file_name in os.listdir(config['OUTPUT_FOLDER']):
         s3_file_directory = 'Raw' + '/' + timestamp + '/' + file_name
         s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
     
-subfolder = config['S3_BUCKET'] + 'Raw' + '/' + timestamp
+subfolder = 's3://' + config['S3_BUCKET'] + '/' + 'Raw' + '/' + timestamp
 print(f'Data files upload to {subfolder}')
 
 
