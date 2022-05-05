@@ -37,7 +37,8 @@ def upload_files(s3, config, timestamp):
             s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
             s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
 #Add id field for data file
-def add_id_field(parent_node, df, file_name):
+def add_id_field(df, file_name):
+    parent_node = 'SUBJECT'
     if file_name[0] != parent_node:
         node_id_number_list = random.sample(range(10**5, 10**6), len(df))
         for x in range(0, len(df)):
@@ -45,24 +46,22 @@ def add_id_field(parent_node, df, file_name):
         id_key = file_name[0] + '_id'
         df[id_key] = node_id_number_list
     return df
-#Rename node
-def rename_node(old_node_name, new_node_name, df, file_name):
-    if file_name[0] == old_node_name:
-        file_name[0] = new_node_name
-        type_list = [new_node_name] * len(df)
-        df['type'] = type_list
-    return df, file_name
 #Rename properties
-def rename_properties(old_property, new_property, df):
-    for x in range(0, len(old_property)):
-        df = df.rename(columns={old_property[x]: new_property[x]})
+def rename_properties(df):
+    property = [
+        {'old':'SubjectKey', 'new':'SUBJECT.PT_ID'},
+        {'old':'REG_INST_ID_CD_ENR', 'new':'REG_INST_ID_CD'},
+        {'old':'GRMLN_VAR_PTHGNC_CAT', 'new':'SOMATIC_VAR_PTHGNC_CAT'}
+    ]
+    for x in range(0, len(property)):
+        df = df.rename(columns={property[x]['old']: property[x]['new']})
     return df
 #Remove properties that are not in the data_node file
 def remove_properties(df, node, node_name):
     remove_list = []
     property_list = df.columns.tolist()
     for property in property_list:
-        if property not in node['Props'] and property != 'type' and '.' not in property:
+        if property not in node['Props'] and property != 'type' and '.' not in property and property != node_name + '_id':
             remove_list.append(property)
     if len(remove_list) == 0:
         print(f'Data node {node_name} does not have any properties to remove')
@@ -70,6 +69,48 @@ def remove_properties(df, node, node_name):
         df = df.drop(columns = remove_list)
         print(f'Data node {node_name} removes {remove_list}')
     return df
+#Rename node
+def rename_node(df, file_name):
+    # 'PHYSICAL_EXAM___SCREENING', 'PHYSICAL_EXAM_SCREENING',
+    rename_nodes = [
+        {'old':'PHYSICAL_EXAM___SCREENING', 'new':'PHYSICAL_EXAM_SCREENING'}
+        ]
+    for node in rename_nodes:
+        if file_name[0] == node['old']:
+            file_name[0] = node['new']
+            type_list = [node['new']] * len(df)
+            df['type'] = type_list
+
+    return df, file_name
+
+#Copy property
+def copy_properties(file_name, df):
+    props = [
+        {'node':'SUBJECT', 'new_property':'SITE.REG_INST_ID', 'copy_property':'REG_INST_ID_CD_NM'}
+    ]
+    for property in props:
+        if property['node'] == file_name[0]:
+            df[property['new_property']] = df[property['copy_property']]
+
+    return df
+
+#Add property
+def add_properties(file_name, df):
+    props = [
+        {'node':'SUBJECT', 'new_property':'CLINICALTRIAL.CLINICAL_TRIAL_ID', 'new_value':['NCT04706663'] * len(df)}
+    ]
+    for property in props:
+        if property['node'] == file_name[0]:
+             df[property['new_property']] = property['new_value']
+    
+    return df
+
+#Print Data
+def print_data(config, file_name):
+    file_name = config['OUTPUT_NODE_FOLDER'] + file_name[0] + '.tsv'
+    if not os.path.exists(config['OUTPUT_NODE_FOLDER']):
+        os.mkdir(config['OUTPUT_NODE_FOLDER'])
+    df.to_csv(file_name, sep = "\t", index = False)
             
 
 
@@ -87,20 +128,19 @@ for file_name in os.listdir(download_file_directory):
         df = pd.read_csv(os.path.join(download_file_directory, file_name), sep='\t')
         file_name = file_name.split('.')
         #Rename node
-        df, file_name = rename_node('PHYSICAL_EXAM___SCREENING', 'PHYSICAL_EXAM_SCREENING', df, file_name)
+        df, file_name = rename_node(df, file_name)
         if file_name[0] in model['Nodes'].keys():
-            df = add_id_field('SUBJECT', df, file_name)
-            #Rename SubjectKey
-            old_property = ['SubjectKey', 'REG_INST_ID_CD_ENR', 'GRMLN_VAR_PTHGNC_CAT']
-            new_property = ['SUBJECT.PT_ID','REG_INST_ID_CD','SOMATIC_VAR_PTHGNC_CAT']
-            df = rename_properties(old_property, new_property, df)
+            df = add_id_field(df, file_name)
+            #Rename property
+            df = rename_properties(df)
+            #Copy property
+            df = copy_properties(file_name, df)
+            #Add property
+            df = add_properties(file_name, df)
             #Remove property
             df = remove_properties(df, model['Nodes'][file_name[0]], file_name[0])
             #Print the data
-            file_name = config['OUTPUT_NODE_FOLDER'] + file_name[0] + '.tsv'
-            if not os.path.exists(config['OUTPUT_NODE_FOLDER']):
-                os.mkdir(config['OUTPUT_NODE_FOLDER'])
-            df.to_csv(file_name, sep = "\t", index = False)
+            print_data(config, file_name)
         else:
             print(f'{file_name[0]} is not in the node file')
 
