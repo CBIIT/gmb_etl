@@ -5,3 +5,4 @@ pandas
 argparse
 boto3
 datetime
+lxml
