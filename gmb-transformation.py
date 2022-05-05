@@ -21,14 +21,12 @@ config = args.config_file
 def download_from_s3(s3, args_s3_sub_folder):
     subfolder = 'Raw/' + args_s3_sub_folder
     subfolder_dirsctory = './' + args_s3_sub_folder + '/'
-    for key in s3.list_objects(Bucket = config['S3_BUCKET'])['Contents']:
+    for key in s3.list_objects(Bucket = config['S3_BUCKET'], Prefix = subfolder)['Contents']:
         file_name = key['Key'].split('/')
         file_key = subfolder_dirsctory + file_name[2]
-
-        if subfolder in key['Key']:
-            if not os.path.exists(subfolder_dirsctory):
-                os.mkdir(subfolder_dirsctory)
-            s3.download_file(config['S3_BUCKET'], key['Key'], file_key)
+        if not os.path.exists(subfolder_dirsctory):
+            os.mkdir(subfolder_dirsctory)
+        s3.download_file(config['S3_BUCKET'], key['Key'], file_key)
 #Upload files to s3
 def upload_files(s3, config, timestamp):
     for file_name in os.listdir(config['OUTPUT_NODE_FOLDER']):
