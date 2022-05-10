@@ -3,5 +3,7 @@
 __pycache__/
 .ipynb_checkpoints/
 gmb_config.yaml
+cds_config.yaml
 gmb-etl.ipynb
 20*/
+*.zip
