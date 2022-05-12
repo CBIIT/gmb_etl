@@ -31,29 +31,30 @@ data = BeautifulSoup(data_set, features='lxml')
 print('TRANSFORM DATASET')
 data_dict = {}
 for clinicaldata in data.odm:
-    node_name = clinicaldata.subjectdata.studyeventdata.formdata['formoid']
-    subject_key = clinicaldata.subjectdata['subjectkey']
-    # add the subject key
-    subject_key_name = 'SubjectKey'
-    if node_name not in data_dict.keys():
-        data_dict[node_name] = {}
-    if node_name != 'SUBJECT':
-        if subject_key_name not in data_dict[node_name].keys():
-            data_dict[node_name][subject_key_name] = []
-        data_dict[node_name][subject_key_name].append(subject_key)
-    # add the type value
-    type = 'type'
-    if type not in data_dict[node_name].keys():
-        data_dict[node_name][type] = []
-    data_dict[node_name][type].append(node_name)
-    for itemdata in clinicaldata.subjectdata.studyeventdata.formdata.itemgroupdata:
-        itemoid = itemdata['itemoid'].split('.')
-        if itemoid[1] not in data_dict[node_name].keys():
-            data_dict[node_name][itemoid[1]] = []
-        try:
-            data_dict[node_name][itemoid[1]].append(itemdata['value'])
-        except:
-            data_dict[node_name][itemoid[1]].append(None)
+    if clinicaldata['metadataversionoid'] == '289':
+        node_name = clinicaldata.subjectdata.studyeventdata.formdata['formoid']
+        subject_key = clinicaldata.subjectdata['subjectkey']
+        # add the subject key
+        subject_key_name = 'SubjectKey'
+        if node_name not in data_dict.keys():
+            data_dict[node_name] = {}
+        if node_name != 'SUBJECT':
+            if subject_key_name not in data_dict[node_name].keys():
+                data_dict[node_name][subject_key_name] = []
+            data_dict[node_name][subject_key_name].append(subject_key)
+        # add the type value
+        type = 'type'
+        if type not in data_dict[node_name].keys():
+            data_dict[node_name][type] = []
+        data_dict[node_name][type].append(node_name)
+        for itemdata in clinicaldata.subjectdata.studyeventdata.formdata.itemgroupdata:
+            itemoid = itemdata['itemoid'].split('.')
+            if itemoid[1] not in data_dict[node_name].keys():
+                data_dict[node_name][itemoid[1]] = []
+            try:
+                data_dict[node_name][itemoid[1]].append(itemdata['value'])
+            except:
+                data_dict[node_name][itemoid[1]].append(None)
 
 ######PRINT DATA FILES######
 print('PRINT DATA FILES')
