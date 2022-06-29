@@ -12,11 +12,11 @@ import boto3
 import datetime
 import dateutil.tz
 
-
 ######GET DATASET FROM RAVE######
 print('GET DATASET FROM RAVE')
 parser = argparse.ArgumentParser()
 parser.add_argument('config_file')
+parser.add_argument('run_script', nargs='?', default=True)
 args = parser.parse_args()
 config = args.config_file
 # auth = 'auth_gmb.yaml'
@@ -95,4 +95,11 @@ for file_name in os.listdir(config['OUTPUT_FOLDER']):
 subfolder = 's3://' + config['S3_BUCKET'] + '/' + 'Raw' + '/' + timestamp
 print(f'Data files upload to {subfolder}')
 
-
+if args.run_script == True:
+    arg_list = [args.config_file, timestamp]
+    command_line = 'python3 gmb-transformation.py'
+    for argument in arg_list:
+        command_line = command_line + ' ' + argument
+    print(command_line)
+    os.system(command_line)
+    
