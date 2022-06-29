@@ -15,8 +15,9 @@ import dateutil.tz
 ######GET DATASET FROM RAVE######
 print('GET DATASET FROM RAVE')
 parser = argparse.ArgumentParser()
-parser.add_argument('config_file')
-parser.add_argument('run_script', nargs='?', default='not-extract-only')
+parser.add_argument('config_file', help='The name of the config file')
+parser.add_argument('--extract_only', help='Decide whether or not run only the extraction script', action='store_true')
+#parser.add_argument('run_script', nargs='?', default='not-extract-only')
 args = parser.parse_args()
 config = args.config_file
 # auth = 'auth_gmb.yaml'
@@ -95,7 +96,7 @@ for file_name in os.listdir(config['OUTPUT_FOLDER']):
 subfolder = 's3://' + config['S3_BUCKET'] + '/' + 'Raw' + '/' + timestamp
 print(f'Data files upload to {subfolder}')
 
-if args.run_script == 'not-extract-only':
+if args.extract_only != True:
     arg_list = [args.config_file, timestamp]
     command_line = 'python3 gmb-transformation.py'
     for argument in arg_list:
