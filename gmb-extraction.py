@@ -16,8 +16,7 @@ import dateutil.tz
 print('GET DATASET FROM RAVE')
 parser = argparse.ArgumentParser()
 parser.add_argument('config_file', help='The name of the config file')
-parser.add_argument('--extract_only', help='Decide whether or not run only the extraction script', action='store_true')
-#parser.add_argument('run_script', nargs='?', default='not-extract-only')
+parser.add_argument('--extract-only', help='Decide whether or not run only the extraction script', action='store_true')
 args = parser.parse_args()
 config = args.config_file
 # auth = 'auth_gmb.yaml'
