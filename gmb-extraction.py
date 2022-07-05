@@ -19,8 +19,6 @@ parser.add_argument('config_file', help='The name of the config file')
 parser.add_argument('--extract-only', help='Decide whether or not run only the extraction script', action='store_true')
 args = parser.parse_args()
 config = args.config_file
-# auth = 'auth_gmb.yaml'
-# config = 'gmb_config.yaml'
 with open(config) as f:
     config = yaml.load(f, Loader = yaml.FullLoader)
 r = requests.get(config['API'], auth = HTTPBasicAuth(config['USERNAME'], config['PASSWORD']))
