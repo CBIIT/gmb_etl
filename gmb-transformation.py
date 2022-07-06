@@ -14,7 +14,6 @@ parser.add_argument('config_file')
 parser.add_argument('s3_sub_folder')
 args = parser.parse_args()
 config = args.config_file
-#config = 'gmb_config.yaml'
 
 
 #Download file from s3
