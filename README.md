@@ -1,5 +1,5 @@
 # **GMB-ETL**
-**Introduction**
+**Introduction and Usage Example**
 
 GMB-ETL is a set of scripts to extract data from the Rave database and transforms the data to be ready to load into the Neo4j database.
 
@@ -17,7 +17,7 @@ To run the python script for transforming Gmb data, the user can use the command
 
 **Documentation Index**
 
-This is the documentation index for the GMB-ETL
+This is the documentation index for the GMB-ETL.
 
 - [GMB-ETL.md](docs/GMB-ETL.md)
 - [GMB-ETL-Pipeline.md](docs/GMB-ETL-Pipeline.md)
