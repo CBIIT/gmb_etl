@@ -11,6 +11,7 @@ import argparse
 import boto3
 import datetime
 import dateutil.tz
+import sys
 
 ######GET DATASET FROM RAVE######
 print('GET DATASET FROM RAVE')
@@ -25,11 +26,12 @@ r = requests.get(config['API'], auth = HTTPBasicAuth(config['USERNAME'], config[
 data_set = r.content.decode("utf-8")
 data = BeautifulSoup(data_set, features='lxml')
 
+
 ######TRANSFORM DATASET######
 print('TRANSFORM DATASET')
 data_dict = {}
 for clinicaldata in data.odm:
-    if clinicaldata['metadataversionoid'] == '289':
+    if clinicaldata['metadataversionoid'] == str(config['VERSION_NUMBER']):
         node_name = clinicaldata.subjectdata.studyeventdata.formdata['formoid']
         subject_key = clinicaldata.subjectdata['subjectkey']
         # add the subject key
@@ -68,6 +70,8 @@ for node_type in data_dict:
 
 ######VALIDATE DATA FILES######
 print('VALIDATE DATA FILES')
+if len(data_dict) == 0:
+    sys.exit('ERROR: The extraction script did not extract any data, abort uploading data to s3.')
 with open(config['NODE_FILE']) as f:
     model = yaml.load(f, Loader = yaml.FullLoader)
 for node in model['Nodes']:
@@ -89,7 +93,7 @@ for file_name in os.listdir(config['OUTPUT_FOLDER']):
         file_directory = config['OUTPUT_FOLDER'] + file_name
         s3_file_directory = 'Raw' + '/' + timestamp + '/' + file_name
         s3.upload_file(file_directory ,config['S3_BUCKET'], s3_file_directory)
-    
+
 subfolder = 's3://' + config['S3_BUCKET'] + '/' + 'Raw' + '/' + timestamp
 print(f'Data files upload to {subfolder}')
 
@@ -100,4 +104,4 @@ if args.extract_only != True:
         command_line = command_line + ' ' + argument
     print(command_line)
     os.system(command_line)
-    
+

@@ -5,3 +5,4 @@ OUTPUT_FOLDER: ./gmb_raw_data_files/
 OUTPUT_NODE_FOLDER: ./gmb_node_data_files/
 NODE_FILE: ./node_file/000048_Model.yml
 S3_BUCKET: S3_BUCKET_NAME
+VERSION_NUMBER: VERSION_NUMBER
