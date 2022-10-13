@@ -30,7 +30,7 @@ class gmb_extraction():
 
 
     ######TRANSFORM DATASET######
-    def extract(self):
+    def transform_data(self):
         self.log.info('TRANSFORM DATASET')
         data_dict = {}
         for clinicaldata in self.data.odm:
@@ -58,8 +58,10 @@ class gmb_extraction():
                         data_dict[node_name][itemoid[1]].append(itemdata['value'])
                     except:
                         data_dict[node_name][itemoid[1]].append(None)
+        return data_dict
 
         ######PRINT DATA FILES######
+    def print_data(self, data_dict):
         self.log.info('PRINT DATA FILES')
         for node_type in data_dict:
             df = pd.DataFrame()
@@ -70,7 +72,7 @@ class gmb_extraction():
                 os.mkdir(self.config['OUTPUT_FOLDER'])
             df.to_csv(file_name, sep = "\t", index = False)
 
-
+    def validate_files(self, data_dict):
         ######VALIDATE DATA FILES######
         self.log.info('VALIDATE DATA FILES')
         if len(data_dict) == 0:
@@ -87,7 +89,7 @@ class gmb_extraction():
                         self.log.warning(f'Property {prop} from data node {node} is not in the dataset.')
 
         ######UPLOAD DATA FILES######
-
+    def upload_files(self):
         s3 = boto3.client('s3')
         eastern = dateutil.tz.gettz('US/Eastern')
         timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%dT%H%M%S")
@@ -100,6 +102,13 @@ class gmb_extraction():
 
         subfolder = 's3://' + self.config['S3_BUCKET'] + '/' + 'Raw' + '/' + timestamp
         self.log.info(f'Data files upload to {subfolder}')
+        return timestamp
+
+    def extract(self):
+        data_dict = self.transform_data()
+        self.print_data(data_dict)
+        self.validate_files(data_dict)
+        timestamp = self.upload_files()
         return timestamp
 
 
