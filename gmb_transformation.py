@@ -9,7 +9,7 @@ import boto3
 import argparse
 from bento.common.utils import get_logger
 
-class gmb_transformation():
+class GmbTransformation():
     def __init__(self, config_file, s3_sub_folder, download_data):
         self.s3_sub_folder = s3_sub_folder
         self.download_data = download_data
@@ -120,7 +120,7 @@ class gmb_transformation():
             self.download_from_s3(s3)
             download_file_directory = os.path.join('./', self.s3_sub_folder)
         else:
-            download_file_directory = './gmb_raw_data_files'
+            download_file_directory = self.config['OUTPUT_FOLDER']
         self.log.info('Files are successfully downloaded')
 
         with open(self.config['NODE_FILE']) as f:
@@ -154,10 +154,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('config_file')
     parser.add_argument('s3_sub_folder')
-    parser.add_argument('--not_download_data', help='Decide whether or not download data from s3 for transformation', action='store_true')
+    parser.add_argument('--local-raw-data', help='Decide whether or not download data from s3 for transformation', action='store_true')
     args = parser.parse_args()
     config = args.config_file
     s3_sub_folder = args.s3_sub_folder
-    download_data = not args.not_download_data
-    gmb_trans = gmb_transformation(config, s3_sub_folder, download_data)
+    download_data = not args.local_raw_data
+    gmb_trans = GmbTransformation(config, s3_sub_folder, download_data)
     gmb_trans.transform()

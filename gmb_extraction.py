@@ -14,23 +14,18 @@ import datetime
 import dateutil.tz
 import sys
 from bento.common.utils import get_logger
-from gmb_transformation import gmb_transformation
+from gmb_transformation import GmbTransformation
 
-class gmb_extraction():
-    def __init__(self, config_file):
+class GmbExtraction():
+    def __init__(self, config, data):
     ######GET DATASET FROM RAVE######
         self.log = get_logger('GMB Transformation')
         self.log.info('GET DATASET FROM RAVE')
-        config = config_file
-        with open(config) as f:
-            self.config = yaml.load(f, Loader = yaml.FullLoader)
-        r = requests.get(self.config['API'], auth = HTTPBasicAuth(self.config['USERNAME'], self.config['PASSWORD']))
-        data_set = r.content.decode("utf-8")
-        self.data = BeautifulSoup(data_set, features='lxml')
-
+        self.config = config
+        self.data = data
 
     ######TRANSFORM DATASET######
-    def transform_data(self):
+    def cleanup_data(self):
         self.log.info('TRANSFORM DATASET')
         data_dict = {}
         for clinicaldata in self.data.odm:
@@ -105,7 +100,7 @@ class gmb_extraction():
         return timestamp
 
     def extract(self):
-        data_dict = self.transform_data()
+        data_dict = self.cleanup_data()
         self.print_data(data_dict)
         self.validate_files(data_dict)
         timestamp = self.upload_files()
@@ -118,12 +113,17 @@ if __name__ == '__main__':
     parser.add_argument('--extract-only', help='Decide whether or not run only the extraction script', action='store_true')
     args = parser.parse_args()
     config_file = args.config_file
-    gmb_extract = gmb_extraction(config_file)
+    with open(config_file) as f:
+        config = yaml.load(f, Loader = yaml.FullLoader)
+    r = requests.get(config['API'], auth = HTTPBasicAuth(config['USERNAME'], config['PASSWORD']))
+    data_set = r.content.decode("utf-8")
+    data = BeautifulSoup(data_set, features='lxml')
+    gmb_extract = GmbExtraction(config, data)
     timestamp = gmb_extract.extract()
 
     if args.extract_only != True:
         config = args.config_file
         s3_sub_folder = timestamp
         download_data = True
-        gmb_trans = gmb_transformation(config, s3_sub_folder, download_data)
+        gmb_trans = GmbTransformation(config, s3_sub_folder, download_data)
         gmb_trans.transform()
