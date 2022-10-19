@@ -19,7 +19,7 @@ from gmb_transformation import GmbTransformation
 class GmbExtraction():
     def __init__(self, config):
     ######GET DATASET FROM RAVE######
-        self.log = get_logger('GMB Transformation')
+        self.log = get_logger('GMB Extraction')
         self.log.info('GET DATASET FROM RAVE')
         self.config = config
 

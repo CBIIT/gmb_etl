@@ -6,4 +6,3 @@ argparse
 boto3
 datetime
 lxml
-sys
