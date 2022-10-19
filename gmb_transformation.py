@@ -119,9 +119,10 @@ class GmbTransformation():
         if self.download_data:
             self.download_from_s3(s3)
             download_file_directory = os.path.join('./', self.s3_sub_folder)
+            self.log.info('Files are successfully downloaded')
         else:
             download_file_directory = self.config['OUTPUT_FOLDER']
-        self.log.info('Files are successfully downloaded')
+            self.log.info('Transforming local data at {}'.format(self.config['OUTPUT_FOLDER']))
 
         with open(self.config['NODE_FILE']) as f:
             model = yaml.load(f, Loader = yaml.FullLoader)
