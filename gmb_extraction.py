@@ -123,6 +123,6 @@ if __name__ == '__main__':
     if args.extract_only != True:
         config = args.config_file
         s3_sub_folder = timestamp
-        download_data = True
+        download_data = False
         gmb_trans = GmbTransformation(config, s3_sub_folder, download_data)
         gmb_trans.transform()
