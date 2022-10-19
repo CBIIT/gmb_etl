@@ -17,18 +17,17 @@ from bento.common.utils import get_logger
 from gmb_transformation import GmbTransformation
 
 class GmbExtraction():
-    def __init__(self, config, data):
+    def __init__(self, config):
     ######GET DATASET FROM RAVE######
         self.log = get_logger('GMB Transformation')
         self.log.info('GET DATASET FROM RAVE')
         self.config = config
-        self.data = data
 
     ######TRANSFORM DATASET######
-    def cleanup_data(self):
+    def cleanup_data(self, data):
         self.log.info('TRANSFORM DATASET')
         data_dict = {}
-        for clinicaldata in self.data.odm:
+        for clinicaldata in data.odm:
             if clinicaldata['metadataversionoid'] == str(self.config['VERSION_NUMBER']):
                 node_name = clinicaldata.subjectdata.studyeventdata.formdata['formoid']
                 subject_key = clinicaldata.subjectdata['subjectkey']
@@ -100,7 +99,10 @@ class GmbExtraction():
         return timestamp
 
     def extract(self):
-        data_dict = self.cleanup_data()
+        r = requests.get(self.config['API'], auth = HTTPBasicAuth(self.config['USERNAME'], self.config['PASSWORD']))
+        data_set = r.content.decode("utf-8")
+        data = BeautifulSoup(data_set, features='lxml')
+        data_dict = self.cleanup_data(data)
         self.print_data(data_dict)
         self.validate_files(data_dict)
         timestamp = self.upload_files()
@@ -115,10 +117,7 @@ if __name__ == '__main__':
     config_file = args.config_file
     with open(config_file) as f:
         config = yaml.load(f, Loader = yaml.FullLoader)
-    r = requests.get(config['API'], auth = HTTPBasicAuth(config['USERNAME'], config['PASSWORD']))
-    data_set = r.content.decode("utf-8")
-    data = BeautifulSoup(data_set, features='lxml')
-    gmb_extract = GmbExtraction(config, data)
+    gmb_extract = GmbExtraction(config)
     timestamp = gmb_extract.extract()
 
     if args.extract_only != True:
