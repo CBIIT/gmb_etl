@@ -1,0 +1,2107 @@
+PropDefinitions:
+   #Property of SURVIVAL:
+   DEATH_DT:
+     Desc: DEATH_DT (Date of Death)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of SURVIVAL:
+   DEATH_CAUS_CD:
+     Desc: DEATH_CAUS_CD (Cause of Death (Presumed))
+     Src: NA
+     Type:
+        - "Malignant Disease"
+        - "Toxicity From Protocol Treatment"
+        - "Infection"
+        - "Other (Explain)"
+        - "CoMorbid Event, Specify"
+     Req: true
+     Private: true
+   #Property of SURVIVAL:
+   DEATH_CAUS_TXT:
+     Desc: DEATH_CAUS_TXT (Explain `Other' Cause of Death (Presumed))
+     Src: NA
+     Type: LongText
+     Req: false
+     Private: true
+   #Property of SURVIVAL:
+   ATPSY_PERF_IND:
+     Desc: ATPSY_PERF_IND (Autopsy Results Available?)
+     Src: NA
+     Type:
+        - "Yes"
+        - "No"
+        - "Unknown"
+     Req: true
+     Private: true
+   #Property of SURVIVAL:
+   ATPSY_DEATH_CAUS:
+     Desc: ATPSY_DEATH_CAUS (Cause of Death (Autopsy Finding))
+     Src: NA
+     Type:
+        - "Malignant Disease"
+        - "Toxicity From Protocol Treatment"
+        - "Infection"
+        - "Other (Explain)"
+        - "CoMorbid Event, Specify"
+     Req: false
+     Private: true
+   #Property of SURVIVAL:
+   ATPSY_DEATH_CAUS_TXT:
+     Desc: ATPSY_DEATH_CAUS_TXT (Explain 'Other' Cause of Death (Autopsy))
+     Src: NA
+     Type: LongText
+     Req: false
+     Private: true
+   #Property of SURVIVAL:
+   ATPSY_DZ_SITE_NM:
+     Desc: ATPSY_DZ_SITE_NM (Sites of Disease at Autopsy)
+     Src: NA
+     Type:
+        - "Abdomen"
+        - "Abdomen/Pelvis"
+        - "Abdominal wall"
+        - "Acetabulum"
+        - "Adenoid"
+        - "Adipose"
+        - "Adnexa"
+        - "Adrenal gland"
+        - "Alveolar Ridge"
+        - "Amniotic Fluid"
+        - "Ampulla of Vater"
+        - "Anal canal"
+        - "Anal sphincter"
+        - "Ankle"
+        - "Anorectum"
+        - "Antecubital fossa"
+        - "Antrum Pylori"
+        - "Anus"
+        - "Aorta"
+        - "Aortic Body"
+        - "Appendix"
+     Req: false
+     Private: true
+   #Property of ENROLLMENT,GERMLINE_VARIANT,SOMATIC_VARIANT,BASELINE_MEDICAL_HISTORY_2,PRIOR_RADIATION_SUPPLEMENT,PRIOR_SURGERY_SUPPLEMENT,PRIOR_THERAPY_SUPPLEMENT,PHYSICAL_EXAM___SCREENING,CANCER_HISTORY,STORAGE,LABORATORY,ADVERSE_EVENTS,CONCOMITANT_MEASURES_MEDICATIONS,FOLLOW_UP,MEDICAL_HISTORY,SURGERY_SUPPLEMENT,RADIATION_SUPPLEMENT,FOLLOW_UP_THERAPY,STORAGE_2,SURVIVAL,OFF_STUDY,PI_SIGNOFF
+   RSCH_COMMENTS_IND:
+     Desc: RSCH_COMMENTS_IND (Do you want to add comments?)
+     Src: NA
+     Type:
+        - "Yes"
+        - "No"
+     Req: false
+     Private: true
+   #Property of ENROLLMENT,GERMLINE_VARIANT,SOMATIC_VARIANT,BASELINE_MEDICAL_HISTORY_2,PRIOR_RADIATION_SUPPLEMENT,PRIOR_SURGERY_SUPPLEMENT,PRIOR_THERAPY_SUPPLEMENT,PHYSICAL_EXAM___SCREENING,CANCER_HISTORY,STORAGE,LABORATORY,ADVERSE_EVENTS,CONCOMITANT_MEASURES_MEDICATIONS,FOLLOW_UP,MEDICAL_HISTORY,SURGERY_SUPPLEMENT,RADIATION_SUPPLEMENT,FOLLOW_UP_THERAPY,STORAGE_2,SURVIVAL,OFF_STUDY,PI_SIGNOFF
+   COMMENTS_HDR:
+     Desc: COMMENTS_HDR (<p style="color:blue"><b><u>COMMENTS</u></b></p>)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SURVIVAL:
+   NOTE_DT_SR:
+     Desc: NOTE_DT_SR (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of SURVIVAL:
+   RSCH_COMMENTS_TXT_SR:
+     Desc: RSCH_COMMENTS_TXT_SR (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of LABORATORY:
+   LAB_DATA_SRCE_NM:
+     Desc: LAB_DATA_SRCE_NM (Source of the Lab Data)
+     Src: NA
+     Type:
+        - "Bidmc"
+        - "Ca043"
+        - "Ca141"
+        - "Cchmc"
+        - "Chop"
+        - "Cincinchil"
+        - "Cinj"
+        - "Cozad"
+        - "Croatia"
+        - "Dfcilab"
+        - "Dlm"
+        - "Dlm$Diabetic"
+        - "Duke"
+        - "Emory_Ecic"
+        - "Emory_Euhm"
+        - "Fsh"
+        - "Georgetown"
+        - "Gtown2011"
+        - "Hackensack"
+        - "Hlog"
+        - "Jhmilab"
+     Req: false
+     Private: true
+   #Property of STORAGE,LABORATORY,STORAGE_2
+   SMPL_COLL_DT:
+     Desc: SMPL_COLL_DT (Lab Date)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of LABORATORY:
+   LAB_COLL_TM:
+     Desc: LAB_COLL_TM (Lab Time)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of LABORATORY,ADVERSE_EVENTS,CONCOMITANT_MEASURES_MEDICATIONS
+   CRSE_NUM:
+     Desc: CRSE_NUM (Course #)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY,ADVERSE_EVENTS,CONCOMITANT_MEASURES_MEDICATIONS
+   CRSE_DAY_NUM:
+     Desc: CRSE_DAY_NUM (Day in Course (Cycle))
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   LAB_TEST_NM:
+     Desc: LAB_TEST_NM (Lab Test)
+     Src: NA
+     Type:
+        - "PSA_SER"
+        - "TESTOST_TTL_SER"
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   LAB_TST_RSL_CHAR_VAL:
+     Desc: LAB_TST_RSL_CHAR_VAL (Lab Value (Char))
+     Src: NA
+     Type: LongText
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   LAB_UOM_NM:
+     Desc: LAB_UOM_NM (UOM)
+     Src: NA
+     Type:
+        - "%:Percent"
+        - "%/100 WBC:Percent Per 100 WBC"
+        - "/100 WBC:Per 100 identifiable White Blood cells"
+        - "/mm3:Per millimeter cubed"
+        - "10E10:10E10"
+        - "10E11:10E11"
+        - "10E12:10E12"
+        - "10E12 Cells/L:10E12 Cells per Liter"
+        - "10E13:10E13"
+        - "10E14:10E14"
+        - "10E15:10E15"
+        - "10E16:10E16"
+        - "10E17:10E17"
+        - "10E18:10E18"
+        - "10E19:10E19"
+        - "10E2:10E2"
+        - "10E20:10E2"
+        - "10E3:10E3"
+        - "10E3 Cells/microL:10E3 Cells per microLiter"
+        - "10E4:10E4"
+        - "10E5:10E5"
+     Req: true
+     Private: true
+   #Property of LABORATORY:
+   LAB_TST_NL_REFRG_TXT:
+     Desc: LAB_TST_NL_REFRG_TXT (Normal Range (e.g. 1.5-5))
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   LAB_TST_NL_RANGE_IND:
+     Desc: LAB_TST_NL_RANGE_IND (Range Indicator)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY,ADVERSE_EVENTS
+   AE_SEV_GD:
+     Desc: AE_SEV_GD (Grade)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   LAB_TST_RSL_NUM_VAL:
+     Desc: LAB_TST_RSL_NUM_VAL (Value (Numeric))
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   LAB_TST_RSL_STD_VAL:
+     Desc: LAB_TST_RSL_STD_VAL (Value in Preferred UOM)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   LAB_TEST_PREF_UOM_NM:
+     Desc: LAB_TEST_PREF_UOM_NM (Preferred UOM)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of LABORATORY:
+   NOTE_DT_LAB:
+     Desc: NOTE_DT_LAB (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of LABORATORY:
+   RSCH_COMMENTS_TXT_LAB:
+     Desc: RSCH_COMMENTS_TXT_LAB (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of PRIOR_SURGERY_SUPPLEMENT,SURGERY_SUPPLEMENT
+   SURG_DT:
+     Desc: SURG_DT (Date of Surgery)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of PRIOR_SURGERY_SUPPLEMENT,SURGERY_SUPPLEMENT
+   PRIOR_SX_PERF_TXT:
+     Desc: PRIOR_SX_PERF_TXT (Procedure)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SURGERY_SUPPLEMENT:
+   ANAT_SITE_NM:
+     Desc: ANAT_SITE_NM (Site)
+     Src: NA
+     Type:
+        - "Abdomen"
+        - "Abdomen/Pelvis"
+        - "Abdominal wall"
+        - "Acetabulum"
+        - "Adenoid"
+        - "Adipose"
+        - "Adnexa"
+        - "Adrenal gland"
+        - "Alveolar Ridge"
+        - "Amniotic Fluid"
+        - "Ampulla of Vater"
+        - "Anal canal"
+        - "Anal sphincter"
+        - "Ankle"
+        - "Anorectum"
+        - "Antecubital fossa"
+        - "Antrum Pylori"
+        - "Anus"
+        - "Aorta"
+        - "Aortic Body"
+        - "Appendix"
+     Req: false
+     Private: true
+   #Property of SURGERY_SUPPLEMENT:
+   PROC_FNG_DESC:
+     Desc: PROC_FNG_DESC (Findings)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SURGERY_SUPPLEMENT:
+   RESID_DIS_EXTENT:
+     Desc: RESID_DIS_EXTENT (Residual Disease)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SURGERY_SUPPLEMENT:
+   THERAPEUTIC_IND:
+     Desc: THERAPEUTIC_IND (Therapeutic?)
+     Src: NA
+     Type:
+        - "Yes"
+        - "No"
+     Req: false
+     Private: true
+   #Property of SURGERY_SUPPLEMENT:
+   NOTE_DT_SURG_SUPP:
+     Desc: NOTE_DT_SURG_SUPP (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of SURGERY_SUPPLEMENT:
+   RSCH_COMMENTS_TXT_SURG_SUPP:
+     Desc: RSCH_COMMENTS_TXT_SURG_SUPP (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of OFF_STUDY:
+   OFF_STUDY_DT:
+     Desc: OFF_STUDY_DT (Date Off Study)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of OFF_STUDY:
+   OFF_STUDY_RSN_CD:
+     Desc: OFF_STUDY_RSN_CD (Reason Off study)
+     Src: NA
+     Type:
+        - "Switched to Alternative Treatment"
+        - "Disease Progression before Treatment"
+        - "Death on Study"
+        - "Cytogenetic resistance"
+        - "Ineligible"
+        - "Disease Progression On Study"
+        - "Refused further Treatment"
+        - "Complicating Disease / Intercurrent Illness"
+        - "Adverse Events / Side Effects"
+        - "Not Treated - Other Reasons, explain"
+        - "Protocol Violation"
+        - "Patient Declined to Participate (before treatment started.)"
+        - "No Treatment, per protocol"
+        - "Completed treatment phase but refused the Protocol-Specified Follow-up"
+        - "Follow-up Period Completed"
+        - "Lost to Further Follow-up"
+        - "Refused Further Follow-up"
+        - "Death during Follow-up Period"
+        - "Other Reasons"
+        - "Disease Progression during Follow-up Period"
+        - "Patient Noncompliance"
+     Req: true
+     Private: true
+   #Property of OFF_STUDY:
+   OFF_STUDY_OTH_RSN:
+     Desc: OFF_STUDY_OTH_RSN (Explain 'Other' Reason)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of OFF_STUDY:
+   PROGRESSION_DT:
+     Desc: PROGRESSION_DT (Date of Disease Progression)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of OFF_STUDY:
+   NOTE_DT_OSSM:
+     Desc: NOTE_DT_OSSM (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of OFF_STUDY:
+   RSCH_COMMENTS_TXT_OSSM:
+     Desc: RSCH_COMMENTS_TXT_OSSM (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of PRIOR_THERAPY_SUPPLEMENT,CONCOMITANT_MEASURES_MEDICATIONS
+   TX_STT_DT:
+     Desc: TX_STT_DT (Date of First Dose)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of PRIOR_RADIATION_SUPPLEMENT,PRIOR_THERAPY_SUPPLEMENT,CONCOMITANT_MEASURES_MEDICATIONS,RADIATION_SUPPLEMENT,FOLLOW_UP_THERAPY
+   STOP_DT:
+     Desc: STOP_DT (Date of Last Dose)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of PRIOR_THERAPY_SUPPLEMENT,FOLLOW_UP_THERAPY
+   AGT_NAME:
+     Desc: AGT_NAME (Agent Name)
+     Src: NA
+     Type:
+        - "131-I-TM-601:131-I-TM-601"
+        - "17-DMAG:null"
+        - "177 Lu-CC49:null"
+        - "2-Deoxycoformycin:null"
+        - "2CDA:null"
+        - "3TC:null"
+        - "4-HPR:null"
+        - "5-fluoro-2-deoxycytidine:5-fluoro-2-deoxycytidine (FdCyd)"
+        - "5-fluorodeoxycytadine:5-fluorodeoxycytadine (FDC)"
+        - "5-Fluorouracil:null"
+        - "5-Iodo-2-pyrimidinone-2'-deoxyribose:5-Iodo-2-pyrimidinone-2'-deoxyribose, IPdR"
+        - "506U78:null"
+        - "5FU/Cisplatin:null"
+        - "5FU/Epirubicin/Cyclophosphamide (FEC):null"
+        - "5FU/Interferon:null"
+        - "5FU/Leucovorin:null"
+        - "5FU/Leucovorin/Gemcitabine:null"
+        - "5FU/Leucovorin/Irinotecan:null"
+        - "5FU/Leucovorin/Levamisole:null"
+        - "5FU/Levamisole:null"
+        - "9-AC:null"
+     Req: true
+     Private: true
+   #Property of PRIOR_RADIATION_SUPPLEMENT,PRIOR_THERAPY_SUPPLEMENT,RADIATION_SUPPLEMENT
+   BEST_RESPS_ASSMNT_TP:
+     Desc: BEST_RESPS_ASSMNT_TP (Best Response)
+     Src: NA
+     Type:
+        - "Complete Response"
+        - "Partial Response"
+        - "Minimal/Marginal Response"
+        - "Stable Disease"
+        - "Progressive Disease"
+        - "Not Evaluable"
+        - "Not Assessed"
+        - "Unknown"
+        - "No Response"
+        - "Mixed Response"
+     Req: false
+     Private: true
+   #Property of PRIOR_RADIATION_SUPPLEMENT,PRIOR_THERAPY_SUPPLEMENT,RADIATION_SUPPLEMENT
+   NONRESP_TX_CD:
+     Desc: NONRESP_TX_CD (NonResponse Therapy Type)
+     Src: NA
+     Type:
+        - "Adjuvant Therapy"
+        - "Palliative Therapy"
+        - "Neoadjuvant Therapy"
+        - "Prophylaxis"
+        - "Definitive"
+     Req: false
+     Private: true
+   #Property of PRIOR_THERAPY_SUPPLEMENT:
+   CDUS_THERAPY_CD:
+     Desc: CDUS_THERAPY_CD (Therapy Type)
+     Src: NA
+     Type:
+        - "Anti-retroviral Therapy"
+        - "Antisense"
+        - "Biphosphonate Therapy"
+        - "Bone Marrow Transplant"
+        - "Chemotherapy (NOS)"
+        - "Chemotherapy multiple agents systemic"
+        - "Chemotherapy non-cytotoxic"
+        - "Chemotherapy single agent systemic"
+        - "Drug and/or Immunotherapy"
+        - "Gene Transfer"
+        - "Hematopoietic Stem Cell Transplantation"
+        - "Hormonal Therapy"
+        - "Image Directed Local Therapy"
+        - "Immunotherapy"
+        - "No prior therapy"
+        - "Oncolytic Virotherapy"
+        - "Prior Therapy (NOS)"
+        - "Radiosensitizing Agent"
+        - "Surgery"
+        - "Systemic Therapy"
+        - "Vaccine"
+     Req: true
+     Private: true
+   #Property of PRIOR_THERAPY_SUPPLEMENT:
+   NOTE_DT_THER:
+     Desc: NOTE_DT_THER (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of PRIOR_THERAPY_SUPPLEMENT:
+   RSCH_COMMENTS_TXT_THER:
+     Desc: RSCH_COMMENTS_TXT_THER (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of ADVERSE_EVENTS:
+   AE_ONSET_DT:
+     Desc: AE_ONSET_DT (Date of Onset)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   RESOLV_DT:
+     Desc: RESOLV_DT (Date Resolved)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   CTCAE5_LLT_NM:
+     Desc: CTCAE5_LLT_NM (Adverse Event Term (v5.0))
+     Src: NA
+     Type:
+        - "Ileal ulcer"
+        - "Ileus"
+        - "Intra-abdominal hemorrhage"
+        - "Jejunal fistula"
+        - "Jejunal hemorrhage"
+        - "Jejunal obstruction"
+        - "Jejunal perforation"
+        - "Jejunal stenosis"
+        - "Jejunal ulcer"
+        - "Lip pain"
+        - "Lower gastrointestinal hemorrhage"
+        - "Malabsorption"
+        - "Mucositis oral"
+        - "Nausea"
+        - "Obstruction gastric"
+        - "Oral cavity fistula"
+        - "Anemia"
+        - "Blood and lymphatic system disorders - Other, specify"
+        - "Bone marrow hypocellular"
+        - "Disseminated intravascular coagulation"
+        - "Eosinophilia"
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   MEDDRA_SOC_TRM_NM:
+     Desc: MEDDRA_SOC_TRM_NM (System Organ Class)
+     Src: NA
+     Type:
+        - "Abdominal distension:Gastrointestinal disorders"
+        - "Abdominal infection:Infections and infestations"
+        - "Abdominal pain:Gastrointestinal disorders"
+        - "Abdominal soft tissue necrosis:Musculoskeletal and connective tissue disorders"
+        - "Abducens nerve disorder:Nervous system disorders"
+        - "Accessory nerve disorder:Nervous system disorders"
+        - "Acidosis:Metabolism and nutrition disorders"
+        - "Acoustic nerve disorder NOS:Nervous system disorders"
+        - "Activated partial thromboplastin time prolonged:Investigations"
+        - "Acute coronary syndrome:Cardiac disorders"
+        - "Acute kidney injury:Renal and urinary disorders"
+        - "Adrenal insufficiency:Endocrine disorders"
+        - "Adult respiratory distress syndrome:Respiratory, thoracic and mediastinal disorders"
+        - "Agitation:Psychiatric disorders"
+        - "Akathisia:Nervous system disorders"
+        - "Alanine aminotransferase increased:Investigations"
+        - "Alcohol intolerance:Metabolism and nutrition disorders"
+        - "Alkaline phosphatase increased:Investigations"
+        - "Alkalosis:Metabolism and nutrition disorders"
+        - "Allergic reaction:Immune system disorders"
+        - "Allergic rhinitis:Respiratory, thoracic and mediastinal disorders"
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AE_DESC_TXT:
+     Desc: AE_DESC_TXT (Adverse Event Description)
+     Src: NA
+     Type: LongText
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AE_RESRCH_ATRB_CAT:
+     Desc: AE_RESRCH_ATRB_CAT (Attribution to Research)
+     Src: NA
+     Type:
+        - "Adverse Event Unrelated"
+        - "Adverse Event Related"
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AE_DZ_ATRB_CAT:
+     Desc: AE_DZ_ATRB_CAT (Attribution to Disease)
+     Src: NA
+     Type:
+        - "Adverse Event Unrelated"
+        - "Adverse Event Related"
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AE_OTH_COND_ATRB_CAT:
+     Desc: AE_OTH_COND_ATRB_CAT (Attribution to Other)
+     Src: NA
+     Type:
+        - "Adverse Event Unrelated"
+        - "Adverse Event Related"
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   OTX_AE_SHORT_TXT:
+     Desc: OTX_AE_SHORT_TXT (Other, Specify)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   UNEXP_AE_OCC_CD_IND:
+     Desc: UNEXP_AE_OCC_CD_IND (Unexpected AE)
+     Src: NA
+     Type:
+        - "NO"
+        - "YES"
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   SAE_RSN:
+     Desc: SAE_RSN (Serious)
+     Src: NA
+     Type:
+        - "1:Not a Serious Adverse Event"
+        - "2:Life-Threatening Event"
+        - "3:Death"
+        - "4:Disability"
+        - "5:Hospitalized"
+        - "6:Congenital Anomaly"
+        - "7:Important Medical Event"
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AE_ACTION:
+     Desc: AE_ACTION (Action)
+     Src: NA
+     Type:
+        - "1:None"
+        - "2:Dose Reduced"
+        - "3:Regimen Interrupted"
+        - "4:Therapy Discontinued"
+        - "5:Interrupted and then reduced"
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AE_THERAPY:
+     Desc: AE_THERAPY (Therapy)
+     Src: NA
+     Type:
+        - "1:None"
+        - "2:Symptom"
+        - "3:Support"
+        - "4:Vigorous"
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AE_OUTCOME:
+     Desc: AE_OUTCOME (Outcome)
+     Src: NA
+     Type:
+        - "1:Recovered"
+        - "4:Died"
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   AER_IND:
+     Desc: AER_IND (Expedited Report to IRB?)
+     Src: NA
+     Type:
+        - "Yes"
+        - "No"
+     Req: true
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   CCR_EP_AE_SUBM_IND:
+     Desc: CCR_EP_AE_SUBM_IND (Expedited Report to CCR?)
+     Src: NA
+     Type:
+        - "No"
+        - "Yes"
+     Req: false
+     Private: true
+   #Property of ADVERSE_EVENTS:
+   NOTE_DT_AE:
+     Desc: NOTE_DT_AE (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of ADVERSE_EVENTS:
+   RSCH_COMMENTS_TXT_AE:
+     Desc: RSCH_COMMENTS_TXT_AE (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   CONCT_AGT_NM:
+     Desc: Concomitant Agent Name PID2183600_V2_0 (Agent Name)
+     Src: NA
+     Type:
+        - "3TC"
+        - "5-Fluorouracil"
+        - "9-AC"
+        - "A&D Ointment"
+        - "Abacavir"
+        - "Abelcet"
+        - "Acarbose"
+        - "ACDA Solution"
+        - "Acebutolol"
+        - "Acepromazine"
+        - "Acetaminophen"
+        - "Acetaminophen #3"
+        - "Acetaminophen/Caffeine/Butalbital"
+        - "Acetaminophen/Diphenhydramine"
+        - "Acetaminophen/Oxycodone HCL (Percocet)"
+        - "Acetazolamide"
+        - "Acetylcysteine"
+        - "Acetyl-L-Carnitine"
+        - "Acetylsalicylic Acid"
+        - "Acetylsalicylic Acid/Caffeine (Anacin)"
+        - "Acitretin"
+     Req: false
+     Private: true
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   CONCT_PROC_NM:
+     Desc: CONCT_PROC_NM (Procedure/Measure)
+     Src: NA
+     Type:
+        - "Alternative Therapy"
+        - "Apheresis"
+        - "Arterial Access Port Removal"
+        - "Birth Control"
+        - "Bronchoscopy/Bronch Lavage"
+        - "Cauterization"
+        - "Continuous Veno-Venous Hemofiltration (CVVH)"
+        - "Debridement"
+        - "Dental Procedure"
+        - "Direct Current Cardioversion (DCCV)"
+        - "Ear Tube(s) Insertion"
+        - "Esophageal dilation"
+        - "Hemicolectomy"
+        - "Hemodialysis"
+        - "Hyperbaric Treatment(s)"
+        - "IABP/Stent Placement"
+        - "Incision & Drainage"
+        - "Intraventricular Shunt Access"
+        - "Irrigation"
+        - "IV Hydration"
+        - "Lymphocyte Infusion"
+     Req: false
+     Private: true
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   CONCOM_MEDS_ADM_DOSE:
+     Desc: Concomitant Medication Administered Dose PID2179946_V1_0 (Dose)
+     Src: NA
+     Type: LongText
+     Req: false
+     Private: true
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   DOSE_UOM_NM:
+     Desc: DOSE_UOM_NM (UOM)
+     Src: NA
+     Type:
+        - "%:Percent"
+        - "10E10 Cell/Kg:10E10 Cells per Kilogram"
+        - "10E10 Cells:10E10 Cells"
+        - "10E10 Viral Particles:10E10 Viral Particles"
+        - "10E11 Cells:10E11 Cells"
+        - "10E11 Cells/kg:10E11 Cells per Kilogram"
+        - "10E11 Viral Particles:10E11 Viral Particles"
+        - "10E3 Cells:10E3 Cells"
+        - "10E3 Cells/kg:10E3 Cells per kilogram"
+        - "10E3 IU/kg:10E3 IU per kilogram"
+        - "10E4 Cell/kg:10E4 Cells per kilogram"
+        - "10E4 Cells:10E4 Cells"
+        - "10E5 Cell/kg:10E5 Cells per kilogram"
+        - "10E5 Cells:10E5 Cells"
+        - "10E6 Cell/kg:10E6 Cells per kilogram"
+        - "10E6 Cells:10E6 Cells"
+        - "10E7 Cell/kg:10E7 Cells per kilogram"
+        - "10E7 Cells:10E7 Cells"
+        - "10E7 PFU:10E7 Plaque Forming Units"
+        - "10E8 Cell/kg:10E8 Cells per kilogram"
+        - "10E8 Cells:10E8 Cells"
+     Req: false
+     Private: true
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   MED_SCHED:
+     Desc: MED_SCHED (Schedule)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   ACCESS_RTE_TXT_CD:
+     Desc: ACCESS_RTE_TXT_CD (Route)
+     Src: NA
+     Type:
+        - "CIV:Continuous Intravenous Infusion"
+        - "G TUBE:Gastrostomy Tube"
+        - "IA:Intra-Arterial"
+        - "ID:Intradermal"
+        - "IH:Intrahepatic"
+        - "IHI:Intrahepatic Infusion"
+        - "IM:Intramuscular"
+        - "INHALATN:Inhalation"
+        - "IP:Intraperitoneal"
+        - "IT:Intrathecal"
+        - "IV:Intravenous Bolus"
+        - "IVI:Intravenous Infusion"
+        - "NASAL:Nasal"
+        - "NG:Nasogastric"
+        - "OPH EACH:Ophthalmic, Each Eye"
+        - "OPH LEFT:Ophthalmic, Left Eye"
+        - "OPH, RT:Ophthalmic, Right Eye"
+        - "PO:Oral"
+        - "PR:Rectal"
+        - "RT:Radiation"
+        - "SC:Subcutaneous"
+     Req: false
+     Private: true
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   INDCN_CONCT_AGT_MSR:
+     Desc: Concomitant Agent Concomitant Intervention or Procedure Reason PID2003870_V4_0 (Reason)
+     Src: NA
+     Type:
+        - "Accelerate Hematopoetic Recovery"
+        - "Acidity"
+        - "Acquired iron overload"
+        - "Attention Deficit Disorder"
+        - "Adrenal Suppression"
+        - "Airway Protection"
+        - "Allergic Reaction"
+        - "Allergy"
+        - "Alopecia"
+        - "Anemia"
+        - "Anesthesia"
+        - "Anorexia"
+        - "Anti-angina"
+        - "Anticoagulation"
+        - "Antipsychotic"
+        - "Anxiety"
+        - "Apheresis"
+        - "Appetite"
+        - "Arrhythmia"
+        - "Arthralgia"
+        - "Arthritis"
+     Req: true
+     Private: true
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   NOTE_DT_CONCOM:
+     Desc: NOTE_DT_CONCOM (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of CONCOMITANT_MEASURES_MEDICATIONS:
+   RSCH_COMMENTS_TXT_CONCOM:
+     Desc: RSCH_COMMENTS_TXT_CONCOM
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of BASELINE_MEDICAL_HISTORY_2,PHYSICAL_EXAM___SCREENING,MEDICAL_HISTORY
+   EVAL_DT:
+     Desc: EVAL_DT (Date of Examination)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of BASELINE_MEDICAL_HISTORY_2,MEDICAL_HISTORY
+   BDY_SYS_TP:
+     Desc: BDY_SYS_TP (Body System)
+     Src: NA
+     Type:
+        - "H/E/E/N/T"
+        - "Neck"
+        - "Respiratory"
+        - "Cardiovascular"
+        - "Gastrointestinal"
+        - "Musculoskeletal"
+        - "Dermatologic"
+        - "Hematopoietic/Lymph"
+        - "Endocrine/Metabolic"
+        - "Urinary"
+        - "Genitalia"
+        - "Breasts"
+        - "Pelvis"
+        - "Abdomen"
+        - "Neurologic"
+        - "Psychologic"
+        - "Immune"
+        - "Other"
+     Req: true
+     Private: true
+   #Property of BASELINE_MEDICAL_HISTORY_2,MEDICAL_HISTORY
+   NORM_ABNORM_IND:
+     Desc: NORM_ABNORM_IND (Finding Results)
+     Src: NA
+     Type:
+        - "Abnormal"
+        - "Normal"
+        - "Not Assessed"
+        - "Not Applicable"
+     Req: false
+     Private: true
+   #Property of BASELINE_MEDICAL_HISTORY_2,MEDICAL_HISTORY
+   MED_HIST:
+     Desc: MED_HIST (Medical History If Abnormal)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of MEDICAL_HISTORY:
+   NOTE_DT_MH:
+     Desc: NOTE_DT_MH (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of MEDICAL_HISTORY:
+   RSCH_COMMENTS_TXT_MH:
+     Desc: RSCH_COMMENTS_TXT_MH (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of STORAGE,STORAGE_2
+   COLL_RES_BIOSP_NM:
+     Desc: COLL_RES_BIOSP_NM (Research collection tubes)
+     Src: NA
+     Type:
+        - "EDTA tube 1x10 mL (blood)"
+        - "Streck tube 2x10 mL (blood)"
+        - "Fresh tissue"
+        - "FFPE blocks"
+        - "FFPE slides"
+     Req: false
+     Private: true
+   #Property of STORAGE,STORAGE_2
+   SPEC_COLL_IND:
+     Desc: SPEC_COLL_IND (Collected?)
+     Src: NA
+     Type:
+        - "No"
+        - "Unknown"
+        - "YES"
+        - "Not Applicable"
+     Req: false
+     Private: true
+   #Property of STORAGE,STORAGE_2
+   CHG_BSL_COMMENT_TXT:
+     Desc: CHG_BSL_COMMENT_TXT (Comments)
+     Src: NA
+     Type: LongText
+     Req: false
+     Private: true
+   #Property of STORAGE_2:
+   NOTE_DT_FLWUPRSC:
+     Desc: NOTE_DT_FLWUPRSC (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of STORAGE_2:
+   RSCH_COMMENTS_TXT_FLWUPRSC:
+     Desc: RSCH_COMMENTS_TXT_FLWUPRSC (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of ENROLLMENT:
+   DX_DT:
+     Desc: DX_DT (Date of Diagnosis)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of ENROLLMENT:
+   HIST_CYTPATH_DESC:
+     Desc: HIST_CYTPATH_DESC (Histology/Cytopathology)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of ENROLLMENT:
+   PT_ELIG_IND:
+     Desc: PT_ELIG_IND (In the opinion of the investigator, is the patient eligible?)
+     Src: NA
+     Type:
+        - "Yes"
+        - "No"
+     Req: true
+     Private: true
+   #Property of ENROLLMENT:
+   GLESNSC_GD_PRSCA_VAL:
+     Desc: GLESNSC_GD_PRSCA_VAL (Gleason Score)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of ENROLLMENT:
+   ICF_SIG_DT:
+     Desc: ICF_SIG_DT (Date Informed Consent Signed)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of ENROLLMENT:
+   PROT_AMDT_DT:
+     Desc: PROT_AMDT_DT (Date of Informed Consent Version)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of ENROLLMENT:
+   DISEAS_STG:
+     Desc: DISEAS_STG (Disease Stage at Entry)
+     Src: NA
+     Type:
+        - "I"
+        - "II"
+        - "III"
+        - "IV"
+        - "IA"
+        - "IB"
+        - "IC"
+        - "IIA"
+        - "IIB"
+        - "IIC"
+        - "IIIA"
+        - "IIIB"
+        - "IIIC"
+        - "IVA"
+        - "IVB"
+        - "IVC"
+        - "IE"
+        - "IIE"
+     Req: false
+     Private: true
+   #Property of ENROLLMENT:
+   PRESTUDY_LAB_DT:
+     Desc: PRESTUDY_LAB_DT (Date from which to Start Including labs)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of ENROLLMENT:
+   NOTE_DT_ENRL:
+     Desc: NOTE_DT_ENRL (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of ENROLLMENT:
+   RSCH_COMMENTS_TXT_ENRL:
+     Desc: RSCH_COMMENTS_TXT_ENRL (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of SOMATIC_VARIANT:
+   TUMR_GENE_SEQ_TSO_CD:
+     Desc: TUMR_GENE_SEQ_TSO_CD (TSO 500 gene panel)
+     Src: NA
+     Type:
+        - "ABL1"
+        - "ABL2"
+        - "ACVR1"
+        - "ACVR1B"
+        - "AKT1"
+        - "AKT2"
+        - "AKT3"
+        - "ALK"
+        - "ALOX12B"
+        - "ANKRD11"
+        - "ANKRD26"
+        - "APC"
+        - "AR"
+        - "ARAF"
+        - "ARFRP1"
+        - "ARID1A"
+        - "ARID1B"
+        - "ARID2"
+        - "ARID5B"
+        - "ASXL1"
+        - "ASXL2"
+     Req: false
+     Private: true
+   #Property of GERMLINE_VARIANT,SOMATIC_VARIANT
+   GENE_PATH_VAR_NM:
+     Desc: GENE_PATH_VAR_NM (Gene Pathogenic Variant)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SOMATIC_VARIANT:
+   SOMATIC_VAR_PTHGNC_CAT:
+     Desc: SOMATIC_VAR_PTHGNC_CAT (Pathogenicity)
+     Src: NA
+     Type:
+        - "Benign"
+        - "Likely Benign"
+        - "Likely Pathogenic"
+        - "Pathogenic"
+        - "Pathogenic/Likely Pathogenic"
+        - "Variant of Unknown Significance (VUS)"
+     Req: false
+     Private: true
+   #Property of SOMATIC_VARIANT:
+   NOTE_DT_SV:
+     Desc: NOTE_DT_SV (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of SOMATIC_VARIANT:
+   RSCH_COMMENTS_TXT_SV:
+     Desc: RSCH_COMMENTS_TXT_SV (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of FOLLOW_UP:
+   LAST_CONTACT_DT:
+     Desc: LAST_CONTACT_DT (Date of Last Contact)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of FOLLOW_UP:
+   PT_CNT_TP:
+     Desc: PT_CNT_TP (Type of Contact)
+     Src: NA
+     Type:
+        - "Telephone Contact With Patient"
+        - "Telephone Contact With Patient'S Family"
+        - "Social Security Death Index (Ssdi)"
+        - "Telephone Contact With Patient'S Local Physician"
+        - "Clinic Appointment"
+        - "Mail Contact With The Patient"
+        - "E-Mail Contact With The Patient"
+        - "Email from family"
+        - "Email from doctor's office"
+        - "Other"
+        - "Mail contact from local MD(s)"
+     Req: true
+     Private: true
+   #Property of FOLLOW_UP:
+   TX_SINCE_LASTCNT_IND:
+     Desc: TX_SINCE_LASTCNT_IND (Received Treatment Since Last Contact?)
+     Src: NA
+     Type:
+        - "No"
+        - "Yes"
+        - "Unknown"
+     Req: true
+     Private: true
+   #Property of FOLLOW_UP:
+   PART_VITAL_STAT_TP:
+     Desc: PART_VITAL_STAT_TP (Patient Status)
+     Src: NA
+     Type:
+        - "Alive With Disease"
+        - "Alive With No Evidence Of Disease"
+        - "Alive Disease Status Unknown"
+        - "Unknown (Explain)"
+        - "Died"
+     Req: true
+     Private: true
+   #Property of FOLLOW_UP:
+   PT_OTHER_STAT_TXT:
+     Desc: PT_OTHER_STAT_TXT (Explain 'Unknown' Patient Status)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of FOLLOW_UP:
+   NOTE_DT_FLWUP:
+     Desc: NOTE_DT_FLWUP (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of FOLLOW_UP:
+   RSCH_COMMENTS_TXT_FLWUP:
+     Desc: RSCH_COMMENTS_TXT_FLWUP (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of BASELINE_MEDICAL_HISTORY_2:
+   NOTE_DT_MED:
+     Desc: NOTE_DT_MED (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of BASELINE_MEDICAL_HISTORY_2:
+   RSCH_COMMENTS_TXT_MED:
+     Desc: RSCH_COMMENTS_TXT_MED (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of FILE:
+   FILE_NAME:
+     Desc: FILE_NAME
+     Src: NA
+     Type: Text
+     Req: true
+     Private: false
+   #Property of FILE:
+   FILE_TYPE:
+     Desc: FILE_TYPE
+     Src: NA
+     Type:
+        - "Study Protocol"
+        - "Supplemental Data File"
+        - "Pathology Report"
+        - "Image File"
+        - "RNA Sequence File"
+        - "Whole Genome Sequence File"
+        - "Whole Exome Sequence File"
+        - "DNA Methylation Analysis File"
+        - "Index File"
+        - "Array CGH Analysis File # required for the MGC01 study"
+        - "Variant Call File # for raw .vcf files"
+        - "Variant Report # for reports detailing validated variants"
+        - "Data Analysis Whitepaper # for any document detailing a data analysis pipeline and/or methodology"
+     Req: true
+     Private: false
+   #Property of FILE:
+   FILE_DESCRIPTION:
+     Desc: FILE_DESCRIPTION
+     Src: NA
+     Type: Text
+     Req: true
+     Private: false
+   #Property of FILE:
+   FILE_FORMAT:
+     Desc: FILE_FORMAT
+     Src: NA
+     Type: Text
+     Req: true
+     Private: false
+   #Property of FILE:
+   FILE_SIZE:
+     Desc: FILE_SIZE
+     Src: NA
+     Type: integer
+     Req: true
+     Private: false
+   #Property of FILE:
+   MD5SUM:
+     Desc: MD5SUM
+     Src: NA
+     Type: Text
+     Req: true
+     Private: false
+   #Property of FILE:
+   FILE_STATUS:
+     Desc: FILE_STATUS
+     Src: NA
+     Type: Text
+     Req: true
+     Private: false
+   #Property of FILE:
+   UUID:
+     Desc: UUID
+     Src: NA
+     Type: Text
+     Req: true
+     Private: false
+   #Property of FILE:
+   FILE_LOCATION:
+     Desc: FILE_LOCATION
+     Src: NA
+     Type: Text
+     Req: true
+     Private: false
+   #Property of STORAGE:
+   NOTE_DT_SCRRSC:
+     Desc: NOTE_DT_SCRRSC (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of STORAGE:
+   RSCH_COMMENTS_TXT_SCRRSC:
+     Desc: RSCH_COMMENTS_TXT_SCRRSC (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of SUBJECT,SITE
+   REG_INST_ID_CD:
+     Desc: REG_INST_ID_CD (Registering Institution)
+     Src: NA
+     Type:
+        - "NCIGMB : National Cancer Institute Genitourinary Malignancy Branch"
+        - "MI014 : University of Michigan"
+        - "WA020 : University of Washington"
+        - "MA036 : Dana Farber Cancer Institute, Boston, MA"
+        - "NY016 : Memorial Sloan Kettering Cancer Center"
+        - "CA067 : University of California San Diego"
+        - "CA478 : University of California San Francisco"
+        - "MA034 : Massachusetts General Hospital, Cancer Center"
+        - "IL045 : Lurie Cancer Center at Northwestern University"
+        - "OR010 : Oregon Health Sciences University"
+        - "NY021 : Mount Sinai Hospital"
+        - "NY018 : Weill Cornell Medicine"
+        - "CA028 : University of California at Los Angeles"
+        - "65029 : Vall d'Hebron Institute of Oncology"
+     Req: false
+     Private: true
+   #Property of SITE:
+   REG_INST_ID:
+     Desc: REG_INST_ID
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of SITE:
+   LOCATION:
+     Desc: LOCATION
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of SITE:
+   CONTACT:
+     Desc: CONTACT
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of SITE:
+   PHONE:
+     Desc: CONTACT_PHONE
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of SITE:
+   EMAIL:
+     Desc: CONTACT_EMAIL
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of SITE:
+   STATUS:
+     Desc: CONTACT_EMAIL
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of SUBJECT,PI_SIGNOFF
+   HDR1:
+     Desc: HDR1 (<b>PI Signoff</b>)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PI_SIGNOFF:
+   INVEST_SIG_IND:
+     Desc: INVEST_SIG_IND (Investigator's Signature)
+     Src: NA
+     Type:
+        - "No"
+        - "Yes"
+     Req: false
+     Private: true
+   #Property of PI_SIGNOFF:
+   INVESTIGATOR_SIG_DT:
+     Desc: INVESTIGATOR_SIG_DT (Investigator Signature Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of PI_SIGNOFF:
+   INVESTIG_DES_SIG_TXT:
+     Desc: INVESTIG_DES_SIG_TXT (Investigator/Designee Signature)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SUBJECT,PI_SIGNOFF
+   HDR2:
+     Desc: HDR2 (<b>Physician Sign-Off Statement</b>)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PI_SIGNOFF:
+   HDR3:
+     Desc: HDR3 (To the best of my knowledge, I confirm that all the data within the Rave case report forms associated with study 000048 have been reviewed and are accurate and complete.)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PI_SIGNOFF:
+   NOTE_DT_SIGNOFF:
+     Desc: NOTE_DT_SIGNOFF (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of PI_SIGNOFF:
+   RSCH_COMMENTS_TXT_SIGNOFF:
+     Desc: RSCH_COMMENTS_TXT_SIGNOFF (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of CANCER_HISTORY:
+   TYPE_CANCR:
+     Desc: TYPE_CANCR (Type of Cancer)
+     Src: NA
+     Type:
+        - "Breast"
+        - "Colon"
+        - "Head & Neck"
+        - "Lung"
+        - "Non Melanoma Skin"
+        - "Other"
+        - "Prostate"
+     Req: false
+     Private: true
+   #Property of CANCER_HISTORY:
+   CANCR_TYPE_OTHR:
+     Desc: CANCR_TYPE_OTHR (Cancer Type Other, Specify)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of CANCER_HISTORY:
+   DX_AGE_NUM_YR:
+     Desc: DX_AGE_NUM_YR (Age at diagnosis)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of CANCER_HISTORY:
+   PRIOR_TX_MOD_TP:
+     Desc: PRIOR_TX_MOD_TP (Treatment)
+     Src: NA
+     Type:
+        - "CHEMOTHERAPY"
+        - "HORMONAL THERAPY"
+        - "IMMUNOTHERAPY"
+        - "PERFUSION"
+        - "RADIATION"
+        - "SURGERY"
+     Req: false
+     Private: true
+   #Property of CANCER_HISTORY:
+   PRIOR_TX_OTHER_NAME:
+     Desc: PRIOR_TX_OTHER_NAME (Other Therapy Name)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of CANCER_HISTORY:
+   NOTE_DT_CH:
+     Desc: NOTE_DT_CH (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of CANCER_HISTORY:
+   RSCH_COMMENTS_TXT_CH:
+     Desc: RSCH_COMMENTS_TXT_CH (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of PRIOR_RADIATION_SUPPLEMENT,RADIATION_SUPPLEMENT,FOLLOW_UP_THERAPY
+   START_DT:
+     Desc: START_DT (Date of First Dose)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of PRIOR_RADIATION_SUPPLEMENT,RADIATION_SUPPLEMENT
+   RADTN_TYPE:
+     Desc: RADTN_TYPE (Radiation Type)
+     Src: NA
+     Type:
+        - "Adjuvant Rt"
+        - "Brachytherapy"
+        - "External Beam Radiation"
+        - "Neoadjuvant Rt"
+        - "Other Specify"
+        - "Palliative Rt"
+        - "Hyperfractionated"
+        - "Photon Beam"
+        - "Radiosurgery"
+        - "Imrt"
+        - "Electron Beam"
+        - "Conformal"
+        - "Proton Beam"
+        - "Photodynamic Therapy"
+        - "Radiofrequency Ablation"
+        - "Tomotherapy"
+        - "Whole Brain Radiation Therapy"
+        - "Stereotactic Radiosurgery"
+        - "Stereotactic Ablative Radiotherapy"
+        - "Stereotactic Body Radiation Therapy (SBRT)"
+     Req: false
+     Private: true
+   #Property of PRIOR_RADIATION_SUPPLEMENT,RADIATION_SUPPLEMENT
+   PRIOR_RT_HX_SPEC:
+     Desc: PRIOR_RT_HX_SPEC (Other, Specify)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of RADIATION_SUPPLEMENT:
+   THERAPY_TYPE:
+     Desc: THERAPY_TYPE (Radiation Extent)
+     Src: NA
+     Type:
+        - "Extensive Radiation"
+        - "Limited Radiation"
+        - "Radiation (NOS)"
+     Req: false
+     Private: true
+   #Property of PRIOR_SURGERY_SUPPLEMENT,RADIATION_SUPPLEMENT
+   ANAT_SITE:
+     Desc: ANAT_SITE (Site)
+     Src: NA
+     Type:
+        - "Abdomen"
+        - "Abdomen/Pelvis"
+        - "Abdominal wall"
+        - "Acetabulum"
+        - "Adenoid"
+        - "Adipose"
+        - "Adnexa"
+        - "Adrenal gland"
+        - "Alveolar Ridge"
+        - "Amniotic Fluid"
+        - "Ampulla of Vater"
+        - "Anal canal"
+        - "Anal sphincter"
+        - "Ankle"
+        - "Anorectum"
+        - "Antecubital fossa"
+        - "Antrum Pylori"
+        - "Anus"
+        - "Aorta"
+        - "Aortic Body"
+        - "Appendix"
+     Req: false
+     Private: true
+   #Property of RADIATION_SUPPLEMENT:
+   RT_SCHED:
+     Desc: RT_SCHED (Schedule)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of RADIATION_SUPPLEMENT:
+   RT_DOSE:
+     Desc: RT_DOSE (Total Dose)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of RADIATION_SUPPLEMENT:
+   DOSE_UOM:
+     Desc: DOSE_UOM (Total Dose UOM)
+     Src: NA
+     Type:
+        - "%:Percent"
+        - "10E10 Cell/Kg:10E10 Cells per Kilogram"
+        - "10E10 Cells:10E10 Cells"
+        - "10E10 Viral Particles:10E10 Viral Particles"
+        - "10E11 Cells:10E11 Cells"
+        - "10E11 Cells/kg:10E11 Cells per Kilogram"
+        - "10E11 Viral Particles:10E11 Viral Particles"
+        - "10E3 Cells:10E3 Cells"
+        - "10E3 Cells/kg:10E3 Cells per kilogram"
+        - "10E3 IU/kg:10E3 IU per kilogram"
+        - "10E4 Cell/kg:10E4 Cells per kilogram"
+        - "10E4 Cells:10E4 Cells"
+        - "10E5 Cell/kg:10E5 Cells per kilogram"
+        - "10E5 Cells:10E5 Cells"
+        - "10E6 Cell/kg:10E6 Cells per kilogram"
+        - "10E6 Cells:10E6 Cells"
+        - "10E7 Cell/kg:10E7 Cells per kilogram"
+        - "10E7 Cells:10E7 Cells"
+        - "10E7 PFU:10E7 Plaque Forming Units"
+        - "10E8 Cell/kg:10E8 Cells per kilogram"
+        - "10E8 Cells:10E8 Cells"
+     Req: false
+     Private: true
+   #Property of RADIATION_SUPPLEMENT:
+   NOTE_DT_RAD_SUPP:
+     Desc: NOTE_DT_RAD_SUPP (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of RADIATION_SUPPLEMENT:
+   RSCH_COMMENTS_TXT_RAD_SUPP:
+     Desc: RSCH_COMMENTS_TXT_RAD_SUPP (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of SUBJECT,SUBJECT
+   PT_ID:
+     Desc: PT_ID (Subject ID)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SUBJECT:
+   EVAL_DT_ENRL:
+     Desc: EVAL_DT_ENRL (Visit Date)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of SUBJECT:
+   PRSN_GENDER_TXT_TP:
+     Desc: PRSN_GENDER_TXT_TP (Gender)
+     Src: NA
+     Type:
+        - "Female"
+        - "Male"
+        - "Unknown"
+        - "Unspecified"
+     Req: true
+     Private: true
+   #Property of SUBJECT:
+   PER_BIR_DT:
+     Desc: PER_BIR_DT (Date of Birth)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of SUBJECT:
+   PT_AGE_VAL:
+     Desc: PT_AGE_VAL (Age at Entry)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of SUBJECT:
+   PT_INITIALS_NAME:
+     Desc: PT_INITIALS_NAME (Patient Initials (Enter in UPPERCASE))
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of SUBJECT:
+   PT_RACE_CD_1:
+     Desc: PT_RACE_CD_1 (Race)
+     Src: NA
+     Type:
+        - "White"
+        - "Black or African American"
+        - "Native Hawaiian or other Pacific Islander"
+        - "Asian"
+        - "American Indian or Alaska Native"
+        - "Multiple Race"
+        - "Unknown"
+        - "Not Reported"
+     Req: true
+     Private: true
+   #Property of SUBJECT:
+   ETHN_GRP_CAT_TXT:
+     Desc: ETHN_GRP_CAT_TXT (Ethnicity)
+     Src: NA
+     Type:
+        - "Hispanic or Latino"
+        - "Not Hispanic or Latino"
+        - "Unknown"
+        - "Not reported"
+     Req: true
+     Private: true
+   #Property of SUBJECT:
+   PT_SUBGRP_ASSIGN_TP:
+     Desc: PT_SUBGRP_ASSIGN_TP (Patient Subgroup)
+     Src: NA
+     Type:
+        - "Cohort 1 : Subjects with histologically confirmed prostate cancer and genomic testing results"
+        - "Cohort 2 : Subjects with histologically confirmed prostate cancer who deemed to be an exceptional responder with or without genomic testing results"
+     Req: true
+     Private: true
+   #Property of SUBJECT:
+   DZ_DX_NM:
+     Desc: DZ_DX_NM (Disease Term)
+     Src: NA
+     Type:
+        - "Acute lymphoblastic leukemia, NOS"
+        - "Acute myeloid leukemia, NOS"
+        - "Acute promyelocytic leukemia"
+        - "Adenocarcinoma of the cervix"
+        - "Adenocarcinoma of the colon"
+        - "Adenocarcinoma of the esophagus"
+        - "Adenocarcinoma of the gastroesophageal junction"
+        - "Adenocarcinoma of the pancreas"
+        - "Adenocarcinoma of the rectum"
+        - "Adenocarcinoma of the small intestine"
+        - "Adenocarcinoma of the stomach"
+        - "Adenocarcinoma, NOS"
+        - "Adrenocortical carcinoma, NOS"
+        - "Adult T-cell leukemia/lymphoma"
+        - "AIDS-related anal cancer"
+        - "AIDS-related cervical cancer"
+        - "AIDS-related complications"
+        - "AIDS-related Hodgkin lymphoma"
+        - "AIDS-related HPV infections"
+        - "AIDS-related HPV-related cancer, NOS"
+        - "AIDS-related Kaposi sarcoma"
+     Req: false
+     Private: true
+   #Property of SUBJECT:
+   ARM:
+     Desc: ARM (Arm)
+     Src: NA
+     Type:
+        - "Arm 1 : Collection and analyzing of imaging, clinical and genomic data to study the biology of prostate cancer"
+     Req: false
+     Private: true
+   #Property of GERMLINE_VARIANT:
+   HERED_GENE_PANL_CD:
+     Desc: HERED_GENE_PANL_CD (Hereditary Gene/Panel Code)
+     Src: NA
+     Type:
+        - "ABL1"
+        - "ABL2"
+        - "ACTG1"
+        - "ACVR2A"
+        - "ADAMTS20"
+        - "AFF1"
+        - "AFF3"
+        - "AKAP9"
+        - "AKT1"
+        - "AKT2"
+        - "AKT3"
+        - "ALK"
+        - "AMER1"
+        - "ANKRD24"
+        - "APC"
+        - "APOA1"
+        - "APOA2"
+        - "AR"
+        - "ARAF"
+        - "ARFGAP3"
+        - "ARFRP1"
+     Req: false
+     Private: true
+   #Property of GERMLINE_VARIANT:
+   GRMLN_VAR_PTHGNC_CAT:
+     Desc: GRMLN_VAR_PTHGNC_CAT (Germline Pathogenicity)
+     Src: NA
+     Type:
+        - "Benign"
+        - "Likely Benign"
+        - "Likely Pathogenic"
+        - "Pathogenic"
+        - "Pathogenic/Likely Pathogenic"
+        - "Variant of Unknown Significance (VUS)"
+     Req: false
+     Private: true
+   #Property of GERMLINE_VARIANT:
+   NOTE_DT_GRMLN:
+     Desc: NOTE_DT_GRMLN (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of GERMLINE_VARIANT:
+   RSCH_COMMENTS_TXT_GRMLN:
+     Desc: RSCH_COMMENTS_TXT_GRMLN (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PES_HDR_1:
+     Desc: HEADER1 (<b>PHYSICAL EXAM - SCREENING</b>)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PT_PHYS_IND2:
+     Desc: PT_PHYS_IND2 (PE Done?)
+     Src: NA
+     Type:
+        - "No"
+        - "Yes"
+     Req: true
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PES_HDR_2:
+     Desc: HEADER2 (<b>VITAL SIGNS - SCREENING PE</b>)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   EVAL_DT_1:
+     Desc: EVAL_DT (Date of Vitals)
+     Src: NA
+     Type: DateTime
+     Req: true
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PROC_TM:
+     Desc: PROC_TM (Time)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   RSCH_COMMENTS_TXT_1:
+     Desc: RSCH_COMMENTS_TXT (Notes)
+     Src: NA
+     Type: LongText
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   KARN_PERF_STAT_SC:
+     Desc: KARN_PERF_STAT_SC (Karnofsky)
+     Src: NA
+     Type:
+        - "Dead"
+        - "Imminent Death"
+        - "Very sick; supportive treatment and/or hospitalization required"
+        - "Severely disabled; hospitalization required but death not imminent"
+        - "Disabled; requiring special care and assistance"
+        - "Considerable assistance and frequent medical care required; some self-care possible"
+        - "Able to care for most needs, but requires occasional assistance"
+        - "Able to care for self, but unable to work or carry on other normal activities"
+        - "Normal activity but requiring effort. Signs and symptoms of disease more prominent"
+        - "Able to carry on normal activity but with minor signs of illness present."
+        - "Normal with no complaints or evidence of disease"
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   ZUBROD_PERF_STAT_SC:
+     Desc: ZUBROD_PERF_STAT_SC (Zubrod/ECOG)
+     Src: NA
+     Type:
+        - "Asymptomatic"
+        - "Symptomatic, Fully Ambulatory"
+        - "Symptomatic, In Bed Less Than 50% Of Day"
+        - "Symptomatic, In Bed More Than 50% Of Day, But Not Bedridden"
+        - "Bedridden"
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   BDY_WT_KG:
+     Desc: BDY_WT_KG (Weight (kg))
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PERS_HT_CM:
+     Desc: PERS_HT_CM (Height (cm))
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PERS_BSA_VAL:
+     Desc: PERS_BSA_VAL (Body Surface Area)
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   TEMP_CELS_SCL_VAL:
+     Desc: TEMP_CELS_SCL_VAL (Temperature (celsius))
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PULSE_RATE_MSRMT_VAL:
+     Desc: PULSE_RATE_MSRMT_VAL (Pulse)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   SYST_BP_VAL:
+     Desc: SYST_BP_VAL (Systolic BP)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   DIAST_BP_VAL:
+     Desc: DIAST_BP_VAL (Diastolic BP)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   P_VS_RR_PHYSEXM_VAL:
+     Desc: P_VS_RR_PHYSEXM_VAL (Respiratory Rate)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   PULS_OXIM_VAL:
+     Desc: PULS_OXIM_VAL (Pulse Ox)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PHYSICAL_EXAM___SCREENING:
+   NOTE_DT_SCRPE:
+     Desc: NOTE_DT_SCRPE (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of PHYSICAL_EXAM___SCREENING:
+   RSCH_COMMENTS_TXT_SCRPE:
+     Desc: RSCH_COMMENTS_TXT_SCRPE (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of FOLLOW_UP_THERAPY:
+   POST_PROT_TX_TP:
+     Desc: POST_PROT_TX_TP (Subsequent Therapy Type)
+     Src: NA
+     Type:
+        - "Active surveillance"
+        - "Focal laser ablation"
+        - "HIFU"
+        - "Surgery"
+        - "Radiation, adjuvant"
+        - "Radiation, salvage"
+        - "Hormonal therapy"
+        - "Chemotherapy"
+        - "Immunotherapy"
+        - "Other, specify"
+     Req: false
+     Private: true
+   #Property of FOLLOW_UP_THERAPY:
+   POST_PROT_TX_OTH_SP:
+     Desc: POST_PROT_TX_OTH_SP (Subsequent therapy type, other specify)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of FOLLOW_UP_THERAPY:
+   COMMENTS:
+     Desc: COMMENTS (Treatment Reason)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of FOLLOW_UP_THERAPY:
+   NOTE_DT_FLWUP_THERAPY:
+     Desc: NOTE_DT_FLWUP_THERAPY (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of FOLLOW_UP_THERAPY:
+   RSCH_COMMENTS_TXT_FLWUP_THERAPY:
+     Desc: RSCH_COMMENTS_TXT_FLWUP_THERAPY (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of CLINICALTRIAL:
+   CLINICAL_TRIAL_ID:
+     Desc: The Trial ID assigned to trial by ClinicalTrials.gov. (The Trial ID assigned to trial by ClinicalTrials.gov.)
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   CLINICAL_TRIAL_SHORT_NAME:
+     Desc: An abbreviated title of the clinical trial eg. Molecular Analysis for Therapy Choice (An abbreviated title of the clinical trial eg. Molecular Analysis for Therapy Choice)
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   CLINICAL_TRIAL_DESCRIPTION:
+     Desc: A brief description of clinical study. ()
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   CLINICAL_TRIAL_DESIGNATION:
+     Desc: A concise name for clinical study eg. MATCH ()
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   CLINICAL_TRIAL_LONG_NAME:
+     Desc: The complete name of the clinical trial, eg. Targeted Therapy Directed by Genetic Testing in Treating Patients with Advanced Refractory Solid Tumors, Lymphomas, or Multiple Myeloma (The MATCH Screening Trial). ()
+     Src: NA
+     Type: LongText
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   CLINICAL_TRIAL_TYPE:
+     Desc: Clinical trial type ()
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   LEAD_ORGANIZATION:
+     Desc: Lead Organization ()
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   PRINCIPAL_INVESTIGATOR:
+     Desc: Principal Investigators ()
+     Src: NA
+     Type: Text
+     Req: true
+     Private: true
+   #Property of CLINICALTRIAL:
+   DBGAP_ACCESSION_NUMBER:
+     Desc: The dbgap accession number provided for the trial or arm. ()
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PRIOR_RADIATION_SUPPLEMENT:
+   NOTE_DT_RAD:
+     Desc: NOTE_DT_RAD (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of PRIOR_RADIATION_SUPPLEMENT:
+   RSCH_COMMENTS_TXT_RAD:
+     Desc: RSCH_COMMENTS_TXT_RAD (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false
+   #Property of PRIOR_SURGERY_SUPPLEMENT:
+   FIND:
+     Desc: FIND (Findings)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: true
+   #Property of PRIOR_SURGERY_SUPPLEMENT:
+   NOTE_DT_SURG:
+     Desc: NOTE_DT_SURG (Date)
+     Src: NA
+     Type: DateTime
+     Req: false
+     Private: false
+   #Property of PRIOR_SURGERY_SUPPLEMENT:
+   RSCH_COMMENTS_TXT_SURG:
+     Desc: RSCH_COMMENTS_TXT_SURG (Notes)
+     Src: NA
+     Type: Text
+     Req: false
+     Private: false

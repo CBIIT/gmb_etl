@@ -25,7 +25,7 @@ class GmbExtraction():
 
     ######TRANSFORM DATASET######
     def cleanup_data(self, data):
-        self.log.info('TRANSFORM DATASET')
+        self.log.info('CLEAN UP DATASET')
         data_dict = {}
         for clinicaldata in data.odm:
             if clinicaldata['metadataversionoid'] == str(self.config['VERSION_NUMBER']):
@@ -121,8 +121,7 @@ if __name__ == '__main__':
     timestamp = gmb_extract.extract()
 
     if args.extract_only != True:
-        config = args.config_file
         s3_sub_folder = timestamp
         download_data = False
-        gmb_trans = GmbTransformation(config, s3_sub_folder, download_data)
+        gmb_trans = GmbTransformation(config_file, s3_sub_folder, download_data)
         gmb_trans.transform()

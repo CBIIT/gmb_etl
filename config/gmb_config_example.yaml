@@ -6,3 +6,6 @@ OUTPUT_NODE_FOLDER: ./gmb_node_data_files/
 NODE_FILE: ./node_file/000048_Model.yml
 S3_BUCKET: S3_BUCKET_NAME
 VERSION_NUMBER: 585
+DATA_LOADER: /Documents/icdc-dataloader-master/loader.py
+DATA_LOADER_CONFIG: gmb-local.yml
+STATIC_FILES: ./static-files/

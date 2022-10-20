@@ -10,3 +10,5 @@ gmb-etl.ipynb
 tmp/
 config/gmb_config_prod.yaml
 config/gmb_config_uat.yaml
+gmb-local.yml
+static-files/
