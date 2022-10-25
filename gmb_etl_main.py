@@ -6,6 +6,7 @@ import shutil
 from gmb_transformation import GmbTransformation
 from gmb_extraction import GmbExtraction
 from bento.common.utils import get_logger
+import subprocess
 
 parser = argparse.ArgumentParser()
 parser.add_argument('config_file', help='The name of the config file')
@@ -41,8 +42,8 @@ except Exception as e:
     gmb_log.error('GMB static files copying failed, abort the GMB ETL process')
     sys.exit(1)
 
-data_loader_command = 'python3 ' + config['DATA_LOADER'] + ' ' + config['DATA_LOADER_CONFIG'] + ' --dataset ' + config['OUTPUT_NODE_FOLDER']
-data_loader_result = os.system(data_loader_command)
+data_loader_command = ['python3', config['DATA_LOADER'], config['DATA_LOADER_CONFIG'], '--dataset', config['OUTPUT_NODE_FOLDER']]
+data_loader_result = subprocess.call(data_loader_command)
 if data_loader_result != 0:
     gmb_log.error('GMB data upload failed, abort the GMB ETL process')
     sys.exit(1)
