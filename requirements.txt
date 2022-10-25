@@ -2,7 +2,6 @@ requests
 pyyaml
 bs4
 pandas
-argparse
 boto3
-datetime
 lxml
+neo4j
