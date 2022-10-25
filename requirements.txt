@@ -2,8 +2,6 @@ requests
 pyyaml
 bs4
 pandas
-argparse
 boto3
-datetime
 lxml
-subprocess.run
+neo4j
