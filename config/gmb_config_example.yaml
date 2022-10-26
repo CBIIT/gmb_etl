@@ -1,11 +1,11 @@
 USERNAME: USERNAME
 PASSWORD: PASSWORD
 API: https://ccredc.mdsol.com/RaveWebServices/studies/000048(UAT)/datasets/regular
-OUTPUT_FOLDER: ./gmb_raw_data_files/
-OUTPUT_NODE_FOLDER: ./gmb_node_data_files/
-NODE_FILE: ./node_file/000048_Model.yml
+OUTPUT_FOLDER_RAW: ./gmb_raw_data_files/
+OUTPUT_FOLDER_TRANSFORMED: ./gmb_transformed_data_files/
+DATA_MODEL_NODE_FILE: ./node_file/000048_Model.yml
 S3_BUCKET: S3_BUCKET_NAME
-VERSION_NUMBER: 585
+RAVE_DATA_VERSION: 585
 DATA_LOADER: /Documents/icdc-dataloader-master/loader.py
 DATA_LOADER_CONFIG: gmb-local.yml
 STATIC_FILES: ./static-files/

@@ -18,17 +18,16 @@ from gmb_transformation import GmbTransformation
 
 class GmbExtraction():
     def __init__(self, config):
-    ######GET DATASET FROM RAVE######
         self.log = get_logger('GMB Extraction')
         self.log.info('GET DATASET FROM RAVE')
         self.config = config
 
-    ######TRANSFORM DATASET######
+    #CLEAN DATASET
     def cleanup_data(self, data):
         self.log.info('CLEAN UP DATASET')
         data_dict = {}
         for clinicaldata in data.odm:
-            if clinicaldata['metadataversionoid'] == str(self.config['VERSION_NUMBER']):
+            if clinicaldata['metadataversionoid'] == str(self.config['RAVE_DATA_VERSION']):
                 node_name = clinicaldata.subjectdata.studyeventdata.formdata['formoid']
                 subject_key = clinicaldata.subjectdata['subjectkey']
                 # add the subject key
@@ -54,25 +53,25 @@ class GmbExtraction():
                         data_dict[node_name][itemoid[1]].append(None)
         return data_dict
 
-        ######PRINT DATA FILES######
+    #PRINT DATA FILES
     def print_data(self, data_dict):
         self.log.info('PRINT DATA FILES')
         for node_type in data_dict:
             df = pd.DataFrame()
             for node_key in data_dict[node_type]:
                 df[node_key] = data_dict[node_type][node_key]
-            file_name = self.config['OUTPUT_FOLDER'] + node_type + ".tsv"
-            if not os.path.exists(self.config['OUTPUT_FOLDER']):
-                os.mkdir(self.config['OUTPUT_FOLDER'])
+            file_name = self.config['OUTPUT_FOLDER_RAW'] + node_type + ".tsv"
+            if not os.path.exists(self.config['OUTPUT_FOLDER_RAW']):
+                os.mkdir(self.config['OUTPUT_FOLDER_RAW'])
             df.to_csv(file_name, sep = "\t", index = False)
 
+    #VALIDATE DATA FILES
     def validate_files(self, data_dict):
-        ######VALIDATE DATA FILES######
         self.log.info('VALIDATE DATA FILES')
         if len(data_dict) == 0:
             self.log.error('The extraction script did not extract any data, abort uploading data to s3.')
             sys.exit()
-        with open(self.config['NODE_FILE']) as f:
+        with open(self.config['DATA_MODEL_NODE_FILE']) as f:
             model = yaml.load(f, Loader = yaml.FullLoader)
         for node in model['Nodes']:
             if node not in data_dict.keys():
@@ -82,15 +81,15 @@ class GmbExtraction():
                     if prop not in data_dict[node].keys():
                         self.log.warning(f'Property {prop} from data node {node} is not in the dataset.')
 
-        ######UPLOAD DATA FILES######
+    #UPLOAD DATA FILES
     def upload_files(self):
         s3 = boto3.client('s3')
         eastern = dateutil.tz.gettz('US/Eastern')
         timestamp = datetime.datetime.now(tz=eastern).strftime("%Y-%m-%dT%H%M%S")
 
-        for file_name in os.listdir(self.config['OUTPUT_FOLDER']):
+        for file_name in os.listdir(self.config['OUTPUT_FOLDER_RAW']):
             if file_name.endswith('.tsv'):
-                file_directory = self.config['OUTPUT_FOLDER'] + file_name
+                file_directory = self.config['OUTPUT_FOLDER_RAW'] + file_name
                 s3_file_directory = 'Raw' + '/' + timestamp + '/' + file_name
                 s3.upload_file(file_directory, self.config['S3_BUCKET'], s3_file_directory)
 
@@ -98,7 +97,9 @@ class GmbExtraction():
         self.log.info(f'Data files upload to {subfolder}')
         return timestamp
 
+    #EXTRACT DATA
     def extract(self):
+        #Download data from RAVE
         r = requests.get(self.config['API'], auth = HTTPBasicAuth(self.config['USERNAME'], self.config['PASSWORD']))
         data_set = r.content.decode("utf-8")
         data = BeautifulSoup(data_set, features='lxml')

@@ -30,9 +30,9 @@ class GmbTransformation():
     #Upload files to s3
     def upload_files(self, s3):
         timestamp = self.s3_sub_folder
-        for file_name in os.listdir(self.config['OUTPUT_NODE_FOLDER']):
+        for file_name in os.listdir(self.config['OUTPUT_FOLDER_TRANSFORMED']):
             if file_name.endswith('.tsv'):
-                file_directory = self.config['OUTPUT_NODE_FOLDER'] + file_name
+                file_directory = self.config['OUTPUT_FOLDER_TRANSFORMED'] + file_name
                 s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
                 s3.upload_file(file_directory ,self.config['S3_BUCKET'], s3_file_directory)
         subfolder = 's3://' + self.config['S3_BUCKET'] + '/' + 'Transformed' + '/' + timestamp
@@ -70,7 +70,7 @@ class GmbTransformation():
             df = df.drop(columns = remove_list)
             self.log.info(f'Data node {node_name} removes {remove_list}')
         return df
-    #Rename node
+    #Rename data node file
     def rename_node(self, df, file_name):
         # 'PHYSICAL_EXAM___SCREENING', 'PHYSICAL_EXAM_SCREENING',
         rename_nodes = [
@@ -106,11 +106,11 @@ class GmbTransformation():
 
         return df
 
-    #self.log.info Data
+    #Print the data files
     def print_data(self, file_name, df):
-        file_name = self.config['OUTPUT_NODE_FOLDER'] + file_name[0] + '.tsv'
-        if not os.path.exists(self.config['OUTPUT_NODE_FOLDER']):
-            os.mkdir(self.config['OUTPUT_NODE_FOLDER'])
+        file_name = self.config['OUTPUT_FOLDER_TRANSFORMED'] + file_name[0] + '.tsv'
+        if not os.path.exists(self.config['OUTPUT_FOLDER_TRANSFORMED']):
+            os.mkdir(self.config['OUTPUT_FOLDER_TRANSFORMED'])
         df.to_csv(file_name, sep = "\t", index = False)
 
 
@@ -121,10 +121,10 @@ class GmbTransformation():
             download_file_directory = os.path.join('./', self.s3_sub_folder)
             self.log.info('Files are successfully downloaded')
         else:
-            download_file_directory = self.config['OUTPUT_FOLDER']
-            self.log.info('Transforming local data at {}'.format(self.config['OUTPUT_FOLDER']))
+            download_file_directory = self.config['OUTPUT_FOLDER_RAW']
+            self.log.info('Transforming local data at {}'.format(self.config['OUTPUT_FOLDER_RAW']))
 
-        with open(self.config['NODE_FILE']) as f:
+        with open(self.config['DATA_MODEL_NODE_FILE']) as f:
             model = yaml.load(f, Loader = yaml.FullLoader)
         for file_name in os.listdir(download_file_directory):
             if file_name.endswith(".tsv"):
@@ -140,15 +140,15 @@ class GmbTransformation():
                     df = self.copy_properties(file_name, df)
                     #Add property
                     df = self.add_properties(file_name, df)
-                    #Remove property
+                    #Remove extra property
                     df = self.remove_properties(df, model['Nodes'][file_name[0]], file_name[0])
-                    #self.log.info the data
+                    #Print data files
                     self.print_data(file_name, df)
                 else:
                     self.log.info(f'{file_name[0]} is not in the node file')
 
 
-        ######UPLOAD DATA FILES######
+        #Upload data files
         self.upload_files(s3)
 
 if __name__ == '__main__':

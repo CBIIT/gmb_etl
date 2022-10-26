@@ -16,6 +16,7 @@ with open(config_file) as f:
     config = yaml.load(f, Loader = yaml.FullLoader)
 gmb_log = get_logger('GMB Main')
 
+#Extract data files
 try:
     gmb_extract = GmbExtraction(config)
     timestamp = gmb_extract.extract()
@@ -24,6 +25,7 @@ except Exception as e:
     gmb_log.error('GMB data extraction failed, abort the GMB ETL process')
     sys.exit(1)
 
+#Transform data files
 try:
     s3_sub_folder = timestamp
     download_data = False
@@ -34,15 +36,17 @@ except Exception as e:
     gmb_log.error('GMB data transformation failed, abort the GMB ETL process')
     sys.exit(1)
 
+#Copy static files
 try:
     for static_file in os.listdir(config['STATIC_FILES']):
-        shutil.copy(os.path.join(config['STATIC_FILES'], static_file) , config['OUTPUT_NODE_FOLDER'])
+        shutil.copy(os.path.join(config['STATIC_FILES'], static_file) , config['OUTPUT_FOLDER_TRANSFORMED'])
 except Exception as e:
     gmb_log.error(e)
     gmb_log.error('GMB static files copying failed, abort the GMB ETL process')
     sys.exit(1)
 
-data_loader_command = ['python3', config['DATA_LOADER'], config['DATA_LOADER_CONFIG'], '--dataset', config['OUTPUT_NODE_FOLDER']]
+#Load data files to the neo4j database
+data_loader_command = ['python3', config['DATA_LOADER'], config['DATA_LOADER_CONFIG'], '--dataset', config['OUTPUT_FOLDER_TRANSFORMED']]
 data_loader_result = subprocess.call(data_loader_command)
 if data_loader_result != 0:
     gmb_log.error('GMB data upload failed, abort the GMB ETL process')
