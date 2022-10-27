@@ -23,23 +23,28 @@ class GmbExtraction():
         self.config = config
 
     def cleanup_data(self, data):
-        # Function to clean the data that was gotten from RAVE
+        # Function to clean the data that was gotten from RAVE database
         # Function to populate the data dict with the data that was from RAVE
+        # 'data' is the data that was gotten from Rave database
         self.log.info('CLEAN UP DATASET')
         data_dict = {}
         for clinicaldata in data.odm:
             if clinicaldata['metadataversionoid'] == str(self.config['RAVE_DATA_VERSION']):
+                # If the data has the correct data version
                 node_name = clinicaldata.subjectdata.studyeventdata.formdata['formoid']
                 subject_key = clinicaldata.subjectdata['subjectkey'] # add the subject key
                 subject_key_name = 'SubjectKey'
                 if node_name not in data_dict.keys():
+                    # If the 'node_name' is not in the dictionary, then create the object in the dictioonary
                     data_dict[node_name] = {}
                 if node_name != 'SUBJECT':
+                    # Add subject_key property to every raw data nodes except 'SUBJECT'
                     if subject_key_name not in data_dict[node_name].keys():
                         data_dict[node_name][subject_key_name] = []
                     data_dict[node_name][subject_key_name].append(subject_key)
                 type = 'type' # add the type value
                 if type not in data_dict[node_name].keys():
+                    # Add type properties to every raw data nodes
                     data_dict[node_name][type] = []
                 data_dict[node_name][type].append(node_name)
                 for itemdata in clinicaldata.subjectdata.studyeventdata.formdata.itemgroupdata:
@@ -54,6 +59,7 @@ class GmbExtraction():
 
     def print_data(self, data_dict):
         # Function to store the raw data frames to local csv files
+        # 'data_dict' is the dactionary object that is created by the 'cleanup_data' function
         self.log.info('PRINT DATA FILES')
         for node_type in data_dict:
             df = pd.DataFrame()
@@ -61,12 +67,14 @@ class GmbExtraction():
                 df[node_key] = data_dict[node_type][node_key]
             file_name = self.config['OUTPUT_FOLDER_RAW'] + node_type + ".tsv"
             if not os.path.exists(self.config['OUTPUT_FOLDER_RAW']):
+                # If the path does not exist, then create the folder
                 os.mkdir(self.config['OUTPUT_FOLDER_RAW'])
             df.to_csv(file_name, sep = "\t", index = False)
 
     def validate_files(self, data_dict):
         # Function to validate the data that was pulled from RAVE
         # Function will warn the user if the raw data files or the property of the data is not in the model file
+        # 'data_dict' is the dactionary object that is created by the 'cleanup_data' function
         self.log.info('VALIDATE DATA FILES')
         if len(data_dict) == 0:
             self.log.error('The extraction script did not extract any data, abort uploading data to s3.')
@@ -75,10 +83,12 @@ class GmbExtraction():
             model = yaml.load(f, Loader = yaml.FullLoader)
         for node in model['Nodes']:
             if node not in data_dict.keys():
+                # If nodes in the model file not in the raw data
                 self.log.warning(f'Data node {node} is not in the dataset.')
             else:
                 for prop in model['Nodes'][node]['Props']:
                     if prop not in data_dict[node].keys():
+                        # If properties in the model file not in the raw data
                         self.log.warning(f'Property {prop} from data node {node} is not in the dataset.')
 
     def upload_files(self):
@@ -90,6 +100,7 @@ class GmbExtraction():
 
         for file_name in os.listdir(self.config['OUTPUT_FOLDER_RAW']):
             if file_name.endswith('.tsv'):
+                # Find every file that end with '.tsv' and upload them to se bucket
                 file_directory = self.config['OUTPUT_FOLDER_RAW'] + file_name
                 s3_file_directory = 'Raw' + '/' + timestamp + '/' + file_name
                 s3.upload_file(file_directory, self.config['S3_BUCKET'], s3_file_directory)
@@ -118,12 +129,12 @@ if __name__ == '__main__':
     config_file = args.config_file
     with open(config_file) as f:
         config = yaml.load(f, Loader = yaml.FullLoader)
-    gmb_extraction = GmbExtraction(config)
-    timestamp = gmb_extraction.extract()
+    gmb_extractor = GmbExtraction(config)
+    timestamp = gmb_extractor.extract()
 
     if args.extract_only != True:
-        # if not only extract the data but also transform the data
+        # If not only extract the data but also transform the data
         s3_sub_folder = timestamp
         download_data = False
-        gmb_transformation = GmbTransformation(config_file, s3_sub_folder, download_data)
-        gmb_transformation.transform()
+        gmb_transformer = GmbTransformation(config_file, s3_sub_folder, download_data)
+        gmb_transformer.transform()

@@ -18,8 +18,8 @@ gmb_log = get_logger('GMB Main')
 
 try:
     # Extract data files
-    gmb_extraction = GmbExtraction(config)
-    timestamp = gmb_extraction.extract()
+    gmb_extractor = GmbExtraction(config)
+    timestamp = gmb_extractor.extract()
 except Exception as e:
     gmb_log.error(e)
     gmb_log.error('GMB data extraction failed, abort the GMB ETL process')
@@ -30,8 +30,8 @@ try:
     # Transform data files
     s3_sub_folder = timestamp
     download_data = False
-    gmb_trans = GmbTransformation(config_file, s3_sub_folder, download_data)
-    gmb_trans.transform()
+    gmb_transformer = GmbTransformation(config_file, s3_sub_folder, download_data)
+    gmb_transformer.transform()
 except Exception as e:
     gmb_log.error(e)
     gmb_log.error('GMB data transformation failed, abort the GMB ETL process')
