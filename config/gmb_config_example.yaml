@@ -5,7 +5,7 @@ OUTPUT_FOLDER_RAW: ./gmb_raw_data_files/
 OUTPUT_FOLDER_TRANSFORMED: ./gmb_transformed_data_files/
 DATA_MODEL_NODE_FILE: ./node_file/000048_Model.yml
 S3_BUCKET: S3_BUCKET_NAME
-RAVE_DATA_VERSION: 585
+RAVE_DATA_VERSION: 1147
 DATA_LOADER: /Documents/icdc-dataloader-master/loader.py
 DATA_LOADER_CONFIG: gmb-local.yml
 STATIC_FILES: ./static-files/
