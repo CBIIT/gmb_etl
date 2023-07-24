@@ -61,6 +61,6 @@ The configuration file contains all the variables that do not need to be changed
 **Usage Example**
 
 To run the python script for extracting Gmb data from the Rave database, the user can use the command<br/>
-```python3 gmb-extraction.py <configuration file>```<br/>
+```python3 gmb_extraction.py <configuration file>```<br/>
 To run the python script for transforming Gmb data, the user can use the command<br/>
-```python3 gmb-transformation.py <configuration file> <s3 bucket subfolder>```<br/>
+```python3 gmb_transformation.py <configuration file> <s3 bucket subfolder>```<br/>
