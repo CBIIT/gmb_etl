@@ -8,4 +8,4 @@ S3_BUCKET: S3_BUCKET_NAME
 RAVE_DATA_VERSION: 1147
 DATA_LOADER: /Documents/icdc-dataloader-master/loader.py
 DATA_LOADER_CONFIG: gmb-local.yml
-STATIC_FILES: ./static-files/
+STATIC_FILES: static-files/
