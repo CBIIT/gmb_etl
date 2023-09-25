@@ -43,6 +43,11 @@ class GmbTransformation():
                 file_directory = self.config['OUTPUT_FOLDER_TRANSFORMED'] + file_name
                 s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
                 s3.upload_file(file_directory ,self.config['S3_BUCKET'], s3_file_directory)
+        for file_name in os.listdir(self.config['STATIC_FILES']):
+            if file_name.endswith('.tsv'):
+                file_directory = self.config['STATIC_FILES'] + file_name
+                s3_file_directory = 'Transformed' + '/' + timestamp + '/' + file_name
+                s3.upload_file(file_directory ,self.config['S3_BUCKET'], s3_file_directory)
         subfolder = 's3://' + self.config['S3_BUCKET'] + '/' + 'Transformed' + '/' + timestamp
         self.log.info(f'Data files upload to {subfolder}')
 
@@ -183,6 +188,16 @@ class GmbTransformation():
                 else:
                     self.log.info(f'{file_name[0]} is not in the node file')
 
+        #download the static files before upload
+        for key in s3.list_objects(Bucket = self.config['S3_BUCKET'], Prefix = self.config['STATIC_FILES'])['Contents']:
+            if key['Key'].endswith(".tsv"):
+                if not os.path.exists(self.config['STATIC_FILES']):
+                # If the path does not exist, then create the folder
+                    os.mkdir(self.config['STATIC_FILES'])
+                static_file_name = key['Key'].split('/')
+                static_file_key = self.config['STATIC_FILES'] + static_file_name[1]
+                s3.download_file(self.config['S3_BUCKET'], key['Key'], static_file_key)
+        
 
         self.upload_files(s3)
 
